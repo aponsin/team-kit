@@ -55,8 +55,8 @@ Then:
 4. **`STATUS.md`**: copy `templates/STATUS.md`. Fill in the business name and the date. Leave the sections empty except **Now**: "Team set up. Waiting for the first task."
 5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the windows, the platforms), and why.
 6. **`CHANGELOG.md`**: copy `templates/CHANGELOG.md`, with one entry: "0.1.0: team set up."
-7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer. Also replace the list of role names in each prompt with exactly the sessions this team will have (the list you print in step 4), so the checks watch the right sessions.
-8. **Team files from the templates**: copy `templates/PUBLISH-LOG.md` to `docs/PUBLISH-LOG.md`, `templates/MONEY-WATCH.md` to `docs/MONEY.md`, and `templates/GOAL.md` to `docs/GOAL.md` (replace `{{Business name}}` and `{{date}}`; leave the goal sections empty for the owner to fill in). Create the empty folders `docs/briefs/` and `docs/pickup/`. Copy `docs/RECOVERY.md` as it is.
+7. **Scheduled-task prompts**: in `tasks/watchdog.md`, `tasks/context-keeper.md` and `tasks/money-watch.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer. Also replace the list of role names in each prompt with exactly the sessions this team will have (the list you print in step 4), so the checks watch the right sessions.
+8. **Team files from the templates**: copy `templates/PUBLISH-LOG.md` to `docs/PUBLISH-LOG.md`, `templates/MONEY-WATCH.md` to `docs/MONEY.md`, and `templates/GOAL.md` to `docs/GOAL.md` (replace `{{Business name}}` and `{{date}}`; leave the goal sections empty for the owner to fill in). Create the folders `docs/briefs/` and `docs/pickup/`, each with an empty `.gitkeep` file so git keeps them. Copy `docs/RECOVERY.md` as it is.
 9. **Outside helpers**: if the owner names an outside helper in setup, copy `packs/outside/outside-helper.md` to `docs/roles/outside-helper.md`. Otherwise skip it.
 10. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.
 
@@ -78,7 +78,7 @@ Print one block per session, in this order: Manager, then the rest of the packs'
   - Send first: `Writer`
   - Then send: `/pickup Writer`
 
-Then say in one line: "Create these sessions in this order, starting with Manager. START-HERE.md shows how." Do not start any session yourself.
+Then say in one line: "Create these sessions in this order, starting with Manager. START-HERE.md shows how. After that, ask Manager to create the scheduled tasks (START-HERE.md Step 6)." Do not tell the owner to paste the task prompts on the Scheduled page. Do not start any session yourself.
 
 ## Rules for this skill
 
