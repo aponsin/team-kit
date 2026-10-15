@@ -171,6 +171,8 @@ If the Mac restarts, the app crashes, or a session stops responding, follow `doc
 
 ## When something goes wrong
 
+- **"Couldn't switch environments" warning.** Close it. Check that the environment at the bottom left of the message box shows your business's environment. If it does, carry on. If it doesn't, click it and choose yours.
+- **"Turn on Worktree" suggestion.** Ignore it. The team doesn't need it.
 - **A session stops and asks you to open it.** Open it, read the question, answer it, and go back to Manager.
 - **A session is over 40% full.** Manager will ask it to `/handoff`. When it says "state saved", type `/clear` in that session, then `/pickup`.
 - **The board shows "Blocked".** Open the item. It will say what is needed.
