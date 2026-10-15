@@ -44,6 +44,8 @@ For each session on the list:
 
 1. Click **New session** (the **+** at the top of the sidebar).
 2. Click the session's name at the top and type the name shown on the list, for example `Manager`.
+
+   **Name it exactly as shown, with the same capital letters.** The name is how the team's scheduled checks and messages find each session. A session named `writer` or `Writer 2` will be missed. If you make a mistake, rename the session (click its name again) before you go on.
 3. Under the model menu, pick the model and effort shown on the list.
 4. Paste the first message from the list and press Return. It is always "You are <Role>. Run /pickup <Role>.", with the role name filled in, for example "You are Writer. Run /pickup Writer."
 
