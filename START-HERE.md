@@ -96,7 +96,9 @@ The two checks run on their own: the watchdog every 30 minutes, and the context 
    ```
 
 4. If Claude says a schedule that often isn't allowed, reply "yes, hourly is fine". The watchdog still works at an hourly check, just less often.
-5. Check the result: open the **Scheduled** page in the sidebar. Each task should show its name, its schedule, and "Next run". Open each task and check its prompt: it should name your business's folder, and must not contain `{{business folder}}`. If it does, tell Manager.
+5. Set the model for each task. Open the task on the **Scheduled** page, choose **Haiku** with **low** effort. Claude can't set these for you.
+6. Check the result: open the **Scheduled** page in the sidebar. Each task should show its name, its schedule, and "Next run". Open each task and check its prompt: it should name your business's folder, and must not contain `{{business folder}}`. If it does, tell Manager.
+7. The tasks run only while the Claude desktop app is open. If the app was closed when a run was due, the run happens when you next open it.
 
 If you'd rather set them up by hand, click **Scheduled**, then **New task**, then **Set up manually**. Fill in the name, paste the prompt from the file named in the message, and choose the schedule yourself.
 
