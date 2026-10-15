@@ -53,7 +53,17 @@ For each session on the list:
 
    **Name it exactly as shown, with the same capital letters.** The name is how the team's scheduled checks and messages find each session. A session named `writer` or `Writer 2` will be missed. If you make a mistake, rename the session (click its name again) before you go on.
 3. Under the model menu, pick the model and effort shown on the list.
-4. Paste the first message from the list and press Return. It is always `<Role>. Run /pickup <Role>.`, with the role name filled in, for example `Writer. Run /pickup Writer.`
+4. Paste the first message from the list and press Return. It always has this form, with the role name in both places:
+
+   ```text
+   <Role>. Run /pickup <Role>.
+   ```
+
+   For example, for the Writer session:
+
+   ```text
+   Writer. Run /pickup Writer.
+   ```
 
 Start with **Manager**. Every other session reports to it.
 
