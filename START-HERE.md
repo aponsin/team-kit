@@ -145,6 +145,18 @@ If you'd rather set them up by hand, click **Scheduled**, then **New task**, the
 
 If the task finishes, setup is complete.
 
+## How to answer on the flight board
+
+Manager puts every question for you on the board, under **Waiting on you**. There are three kinds:
+
+- **Decision with options.** You see one button per option. One is marked **Manager's pick**. Tap the one you choose. To suggest something else, tap **Something else (say what)** and type it in the box.
+- **Decision to approve a look.** You see pictures, labelled by option. Tap **OK** if you're happy, or **Change something** and say what to change in the box.
+- **Action for you.** You see numbered steps, sometimes with a box to copy from. Do the steps, then tap **Done**. If you get stuck, tap **Something went wrong, help** and say where.
+
+After you tap, the item shows "Sent to Manager". Manager picks it up at its next check, usually within a few minutes. If it still shows as waiting after that, send Manager a short message in the Manager session: "Board reply waiting: <the question>."
+
+Only answer on the board, not in other sessions, so Manager sees every decision in one place.
+
 ## After a restart
 
 If the Mac restarts, the app crashes, or a session stops responding, follow `docs/RECOVERY.md` in your business folder. It takes a few minutes.
