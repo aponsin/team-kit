@@ -7,7 +7,9 @@ If a menu looks different from what is written here, the app has changed. Look f
 ## Before you start
 
 1. **Install Claude Code desktop.** Download it from claude.com/claude-code and open it. Sign in with your Claude account.
-2. **Install Git.** On a Mac, open the Terminal app and type `git --version`, then press Return. If a box offers to install developer tools, accept it.
+2. **Install Git and Python.** On a Mac, open the Terminal app (press Command and Space, type `Terminal`, press Return). Type `git --version` and press Return, then type `python3 --version` and press Return. Each should print a version number, such as `git version 2.x` or `Python 3.x`.
+   - If a box offers to install **developer tools**, click **Install**, wait until it finishes, then run both commands again. This installs both Git and Python.
+   - If either command still says "command not found", stop and tell Manager what the screen says.
 3. **Get this kit.** On GitHub, open the team-kit page and click **Use this template**, then **Create a new repository**. Name it after your business, for example `acme-team`. Keep it **private**. Click **Create repository**.
 4. **Copy it to your Mac.** Open the Terminal app and type the command below. Before you press Return, replace the two parts in angle brackets (`<` and `>`), and leave out the brackets themselves:
 
