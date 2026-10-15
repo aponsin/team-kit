@@ -44,6 +44,8 @@ An environment is a named place in Claude Code desktop that holds one business's
 
 You should see a message ending "Setup written. Create these sessions next."
 
+If the setup asks you to **merge** (for example "Merge team-setup into main now?"), click **Yes, I'll merge**. The sessions in Step 3 read the files from `main`, so the merge must happen first.
+
 ## Step 3: create the sessions
 
 For each session on the list, in this order, starting with Manager:
