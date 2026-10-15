@@ -74,7 +74,9 @@ Print one block per session, in this order: Manager, then the rest of the packs'
 
 - **Name** (the session title, exactly as written: `Manager`, `Writer`, and so on)
 - **Model and effort** from `docs/MODELS.md`
-- **First message**: two messages, in this order. First the role name alone (`<Role>`), which names the session. Then `/pickup <Role>`. For example `Writer`, then `/pickup Writer`.
+- **Two messages, sent separately, never combined**: first the role name alone (`<Role>`), which names the session; wait for the reply; then `/pickup <Role>`. Print them as two separate lines, for example:
+  - Send first: `Writer`
+  - Then send: `/pickup Writer`
 
 Then say in one line: "Create these sessions in this order, starting with Manager. START-HERE.md shows how." Do not start any session yourself.
 
