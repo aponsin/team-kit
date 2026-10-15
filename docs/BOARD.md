@@ -8,11 +8,11 @@ The flight board is a private page the owner reads on a phone. It shows what is 
 
 1. Load the `artifact-capabilities` skill before publishing. It lists the capability names and their settings.
 2. Publish `board/team-board.html` as a private page with all three capabilities: `db` (the shared database), `comments` (the owner's button presses) and `assets` (screenshots). A page published without them shows no buttons and no screenshots, so this is the step that must not be skipped.
-3. Check the published page before telling the owner it is ready:
-   - the page loads and shows the heading "Flight Board";
-   - a test decision with two options shows two buttons;
-   - a test screenshot uploads and opens in the picture viewer.
-   If any check fails, republish with the missing capability. Do not tell the owner it is ready until all three pass.
+3. Check the published page with the owner, in the Manager session, one check at a time, each with buttons (these match `START-HERE.md` Step 7):
+   - "Open the board and tell me whether it loads." Buttons: **Yes, it loads** / **It does not load**.
+   - A test decision on the board with two options. Ask the owner to tap one, then confirm the reply arrived.
+   - A test screenshot. Ask the owner to upload any photo, then confirm it opens in the picture viewer.
+   If any check fails, fix the page (usually a missing capability), republish, and ask that check again. Do not tell the owner it is ready until all three pass. Remove the test items from the board afterwards.
 4. Save the page's link in `STATUS.md`. Show it to the owner once, and say to bookmark it.
 
 ## The data
