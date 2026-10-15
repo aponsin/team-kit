@@ -40,7 +40,8 @@ An environment is a named place in Claude Code desktop that holds one business's
    /team-init
    ```
 2. Answer the ten questions, one at a time. They are: the business name; what it does in one line; your first name; which lane packs you want (writing, shop, sales, operations, software); the languages; the names of the platforms you publish on (shop, blog, email); your two publish windows; and your quiet hours.
-3. At the end it writes your files and prints a list of sessions to create.
+3. After the ten questions, it shows you a short plan: your answers, the sessions it will create, and the files it will write. Check it, then tap **Yes, write it** (or **Change something** if an answer is wrong). This is the only approval in the setup. It also covers merging the files into `main`.
+4. It writes your files and prints a list of sessions to create.
 
 You should see a message ending "Setup written. Create these sessions next."
 
