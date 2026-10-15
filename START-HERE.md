@@ -85,11 +85,15 @@ The two checks run on their own, every 30 minutes and every 4 hours. Set each on
 1. In the desktop app, click **Scheduled** in the sidebar, then click **New task** and choose **Create with Claude**.
 2. Type this message, and press Return:
 
-   `Create a scheduled task named Team watchdog that runs every 30 minutes. Its prompt is the text in tasks/watchdog.md in this folder. Replace {{business folder}} with the name of this folder.`
+   ```text
+   Create a scheduled task named Team watchdog that runs every 30 minutes. Its prompt is the text in tasks/watchdog.md in this folder. Replace {{business folder}} with the name of this folder.
+   ```
 
 3. Do the same again with this message:
 
-   `Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in tasks/context-keeper.md in this folder. Replace {{business folder}} with the name of this folder.`
+   ```text
+   Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in tasks/context-keeper.md in this folder. Replace {{business folder}} with the name of this folder.
+   ```
 
 4. Check the result: each task should show its name, its schedule, and "Next run" in its row.
 
