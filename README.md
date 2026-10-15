@@ -4,7 +4,7 @@ A starter kit for running a small business with a team of Claude Code sessions. 
 
 **Who it is for:** a business owner who is not a developer and wants Claude to do the day-to-day work, with checks in place.
 
-**How to start:** open [START-HERE.md](START-HERE.md). It takes about 30 minutes, with exact clicks.
+**How to start:** open [START-HERE.md](START-HERE.md). It takes about 15 minutes, with exact clicks.
 
 **What you get:**
 - `CLAUDE.md`: the way the team works, written for any business.

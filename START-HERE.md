@@ -1,10 +1,10 @@
-# Start here: set up your team in about 30 minutes
+# Start here: set up your team in 15 minutes
 
 You will create a folder for your business, run one setup skill, then open a few Claude Code sessions, one per role. No coding is needed. Each step says what to click and what you should see.
 
 If a menu looks different from what is written here, the app has changed. Look for the closest match and carry on. Ask Manager if you are stuck.
 
-## Before you start (5 min)
+## Before you start
 
 1. **Install Claude Code desktop.** Download it from claude.com/claude-code and open it. Sign in with your Claude account.
 2. **Install Git.** On a Mac, open the Terminal app and type `git --version`, then press Return. If a box offers to install developer tools, accept it.
@@ -17,13 +17,13 @@ git clone https://github.com/YOUR-NAME/acme-team.git ~/Documents/acme-team
 
 You should see "Cloning into..." and then the prompt returns.
 
-## Step 1: open the business folder (2 min)
+## Step 1: open the business folder
 
 1. In Claude Code desktop, click **Open folder** (or **New session**, then choose a folder).
 2. Pick `~/Documents/acme-team`. Click **Open**.
 3. Click **Trust** if it asks whether you trust the folder.
 
-## Step 2: run the setup (10 min)
+## Step 2: run the setup
 
 1. In the box at the bottom, type `/team-init` and press Return.
 2. Answer the ten questions, one at a time. They are: the business name; what it does in one line; your first name; which lane packs you want (writing, shop, sales, operations, software); the languages; the names of the platforms you publish on (shop, blog, email); your two publish windows; and your quiet hours.
@@ -31,7 +31,7 @@ You should see "Cloning into..." and then the prompt returns.
 
 You should see a message ending "Setup written. Create these sessions next."
 
-## Step 3: create the sessions (10 min)
+## Step 3: create the sessions
 
 For each session on the list:
 
@@ -42,7 +42,7 @@ For each session on the list:
 
 Start with **Manager**. Every other session reports to it.
 
-## Step 4: turn on Remote Control (2 min)
+## Step 4: turn on Remote Control
 
 Remote Control lets you open a session from your phone.
 
@@ -50,7 +50,7 @@ Remote Control lets you open a session from your phone.
 2. Turn it on for each session you want on your phone.
 3. Check the Claude app on your phone. The sessions should appear there.
 
-## Step 5: let scheduled tasks reach Manager (2 min, one time)
+## Step 5: let scheduled tasks reach Manager
 
 Two scheduled tasks check on the team: the watchdog and the context keeper. They need permission to send messages to Manager without asking you every time.
 
@@ -63,20 +63,20 @@ Two scheduled tasks check on the team: the watchdog and the context keeper. They
 
 3. Save the file. You should see the file has one more line in the `allow` list.
 
-## Step 6: schedule the two checks (5 min)
+## Step 6: schedule the two checks
 
 1. In the desktop app, click **Scheduled** in the sidebar, then **New task**.
 2. Name it `Team watchdog`. Paste the text from `tasks/watchdog.md` into the prompt box. Set it to run every 30 minutes.
 3. Click **New task** again. Name it `Context keeper`. Paste `tasks/context-keeper.md`. Set it to run every 4 hours.
 4. Click **Save**. Each should show "Next run" in its row.
 
-## Step 7: open the flight board (5 min)
+## Step 7: open the flight board
 
 1. In the Manager session, type: "Set up the flight board." Manager publishes the board from `board/team-board.html` as a private page.
 2. Manager sends you a link. Open it on your phone and bookmark it.
 3. You should see the heading "Flight Board", with "Waiting on you: nothing yet".
 
-## Step 8: the first test (5 min)
+## Step 8: the first test
 
 1. In the Manager session, type: "Start with a short test: write one product description for [an item you sell] and send it through review."
 2. Watch the board. The item appears under "Initiatives in flight" and moves through the phases.
