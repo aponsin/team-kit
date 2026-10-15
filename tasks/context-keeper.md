@@ -1,6 +1,6 @@
 # Scheduled task: context keeper
 
-Paste everything below the line into the desktop app's **Scheduled** page as the prompt. Name the task `Context keeper`. Run it every 4 hours. Model: Haiku, low effort.
+Paste everything below the line into the desktop app's **Scheduled** page as the prompt. Name the task `{{business name}} context keeper`. Run it every 4 hours. Model: Haiku, low effort.
 
 ---
 

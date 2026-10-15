@@ -1,6 +1,6 @@
 # Scheduled task: team watchdog
 
-Paste everything below the line into the desktop app's **Scheduled** page as the prompt. Name the task `Team watchdog`. Run it every 30 minutes. Model: Haiku, low effort.
+Paste everything below the line into the desktop app's **Scheduled** page as the prompt. Name the task `{{business name}} watchdog`. Run it every 30 minutes. Model: Haiku, low effort.
 
 ---
 

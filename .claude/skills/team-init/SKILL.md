@@ -50,7 +50,7 @@ Then:
 4. **`STATUS.md`**: copy `templates/STATUS.md`. Fill in the business name and the date. Leave the sections empty except **Now**: "Team set up. Waiting for the first task."
 5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the windows, the platforms), and why.
 6. **`CHANGELOG.md`**: copy `templates/CHANGELOG.md`, with one entry: "0.1.0: team set up."
-7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions.
+7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer.
 8. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.
 
 Do not write any secrets. Do not create a place for passwords.

@@ -86,18 +86,18 @@ The two checks run on their own: the watchdog every 30 minutes, and the context 
 2. Type this message, and press Return:
 
    ```text
-   Create a scheduled task named Team watchdog that runs every 30 minutes, using the prompt in tasks/watchdog.md in this folder.
+   Create a scheduled task whose name is this business's name followed by "watchdog", that runs every 30 minutes, using the prompt in tasks/watchdog.md in this folder.
    ```
 
 3. Do the same again with this message:
 
    ```text
-   Create a scheduled task named Context keeper that runs every 4 hours, using the prompt in tasks/context-keeper.md in this folder.
+   Create a scheduled task whose name is this business's name followed by "context keeper", that runs every 4 hours, using the prompt in tasks/context-keeper.md in this folder.
    ```
 
 4. If Claude says a schedule that often isn't allowed, reply "yes, hourly is fine". The watchdog still works at an hourly check, just less often.
 5. Set the model for each task. Open the task on the **Scheduled** page, choose **Haiku** with **low** effort. Claude can't set these for you.
-6. Check the result: open the **Scheduled** page in the sidebar. Each task should show its name, its schedule, and "Next run". Open each task and check its prompt: it should name your business's folder, and must not contain `{{business folder}}`. If it does, tell Manager.
+6. Check the result: open the **Scheduled** page in the sidebar. Each task should show its name, which starts with your business's name, its schedule, and "Next run". Open each task and check its prompt: it should name your business's folder, and must not contain `{{business folder}}`. If it does, tell Manager.
 7. The tasks run only while the Claude desktop app is open. If the app was closed when a run was due, the run happens when you next open it.
 
 If you'd rather set them up by hand, click **Scheduled**, then **New task**, then **Set up manually**. Fill in the name, paste the prompt from the file named in the message, and choose the schedule yourself.
