@@ -86,13 +86,13 @@ The two checks run on their own: the watchdog every 30 minutes, and the context 
 2. Type this message, and press Return:
 
    ```text
-   Create a scheduled task whose name is this business's name followed by "watchdog", that runs every 30 minutes, using the prompt in tasks/watchdog.md in this folder.
+   Create a scheduled task whose name is this business's name, a colon, and "watchdog", that runs every 30 minutes, using the prompt in tasks/watchdog.md in this folder.
    ```
 
 3. Do the same again with this message:
 
    ```text
-   Create a scheduled task whose name is this business's name followed by "context keeper", that runs every 4 hours, using the prompt in tasks/context-keeper.md in this folder.
+   Create a scheduled task whose name is this business's name, a colon, and "context keeper", that runs every 4 hours, using the prompt in tasks/context-keeper.md in this folder.
    ```
 
 4. If Claude says a schedule that often isn't allowed, reply "yes, hourly is fine". The watchdog still works at an hourly check, just less often.
