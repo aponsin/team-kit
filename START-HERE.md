@@ -22,8 +22,9 @@ You should see "Cloning into..." and then the prompt returns.
 
 ## Step 1: open the business folder
 
-1. In Claude Code desktop, click **Open folder** (or **New session**, then choose a folder).
-2. Pick the folder `~/Documents/<your-repo-name>` (the same name you used in step 4). Click **Open**.
+1. In Claude Code desktop, look at the environment menu at the bottom of the window (it shows **Choose environment** or the name of the environment you are in).
+2. Click **New environment**, and name it after your business, for example `acme-team`. Use this one environment for all of your business's sessions. This keeps them apart from your other projects.
+3. Pick the folder `~/Documents/<your-repo-name>` (the same name you used in step 4). Click **Open**.
 3. Click **Trust** if it asks whether you trust the folder.
 
 ## Step 2: run the setup
