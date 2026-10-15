@@ -59,18 +59,20 @@ Remote Control lets you follow up on the team's work from your phone or another 
 2. Turn it on for each session you want on your phone.
 3. Check the Claude app on your phone. The sessions should appear there.
 
-## Step 5: let scheduled tasks reach Manager
+## Step 5: let scheduled tasks reach Manager (one time)
 
-Two scheduled tasks check on the team: the watchdog and the context keeper. They need permission to send messages to Manager without asking you every time.
+Two scheduled tasks check on the team: the watchdog and the context keeper. They need permission to message Manager without asking you each time. This command adds that permission for you. You don't need to edit any file by hand.
 
-1. Open the file `~/.claude/settings.json` in any text editor. (In the Terminal: `open -e ~/.claude/settings.json`.)
-2. Under `"allow": [`, add this line, with a comma after the line before it:
+1. Open the **Terminal** app (press Command and Space, type `Terminal`, press Return).
+2. Copy this whole line, paste it into the Terminal, and press Return:
 
-```json
-"mcp__ccd_session_mgmt__send_message"
+```bash
+python3 -c "import json,os,shutil; p=os.path.expanduser(\"~/.claude/settings.json\"); shutil.copy(p,p+\".bak\"); d=json.load(open(p)); a=d.setdefault(\"permissions\",{}).setdefault(\"allow\",[]); r=\"mcp__ccd_session_mgmt__send_message\"; a.append(r) if r not in a else None; json.dump(d,open(p,\"w\"),indent=2); print(\"done\")"
 ```
 
-3. Save the file. You should see the file has one more line in the `allow` list.
+3. You should see the word `done`. If you see an error instead, stop and tell Manager what it says.
+
+The command also saves a backup of your settings file next to it, called `settings.json.bak`. It's safe to run it again: it won't add the permission twice.
 
 ## Step 6: schedule the two checks
 
