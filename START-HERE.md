@@ -80,10 +80,20 @@ The command also saves a backup of your settings file next to it, called `settin
 
 ## Step 6: schedule the two checks
 
-1. In the desktop app, click **Scheduled** in the sidebar, then **New task**.
-2. Name it `Team watchdog`. Paste the text from `tasks/watchdog.md` into the prompt box. Set it to run every 30 minutes.
-3. Click **New task** again. Name it `Context keeper`. Paste `tasks/context-keeper.md`. Set it to run every 4 hours.
-4. Click **Save**. Each should show "Next run" in its row.
+The two checks run on their own, every 30 minutes and every 4 hours. Set each one up with Claude's help.
+
+1. In the desktop app, click **Scheduled** in the sidebar, then click **New task** and choose **Create with Claude**.
+2. Type this message, and press Return:
+
+   `Create a scheduled task named Team watchdog that runs every 30 minutes. Its prompt is the text in tasks/watchdog.md in this folder. Replace {{business folder}} with the name of this folder.`
+
+3. Do the same again with this message:
+
+   `Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in tasks/context-keeper.md in this folder. Replace {{business folder}} with the name of this folder.`
+
+4. Check the result: each task should show its name, its schedule, and "Next run" in its row.
+
+If you'd rather set them up by hand, click **New task**, then **Set up manually**, and fill in the name, the prompt (copied from the file named in the message), and the schedule yourself.
 
 ## Step 7: open the flight board
 
