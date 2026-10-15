@@ -128,6 +128,10 @@ If you'd rather set them up by hand, click **Scheduled**, then **New task**, the
 
 If the task finishes, setup is complete.
 
+## After a restart
+
+If the Mac restarts, the app crashes, or a session stops responding, follow `docs/RECOVERY.md` in your business folder. It takes a few minutes.
+
 ## When something goes wrong
 
 - **A session stops and asks you to open it.** Open it, read the question, answer it, and go back to Manager.
@@ -140,3 +144,4 @@ If the task finishes, setup is complete.
 - `CLAUDE.md`: the rules every session follows.
 - `docs/TEAM.md`: who does what.
 - `LESSONS.md`: the traps other teams have hit, and the rules that came from them.
+- `docs/GOAL.md`: the goal, what "proven" and "disproven" mean, and the verdict date. Fill it in with the owner before the first big task.

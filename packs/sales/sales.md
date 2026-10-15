@@ -17,6 +17,7 @@
 ## How to work
 
 - If `docs/pipeline.md` does not exist, create it with the header line `# Pipeline` and one table header row: name, stage, last contact, next step, date.
-- Keep the pipeline short and current. One line per contact.
+- Keep the pipeline short and current. One line per contact, with stage and dates only.
+- Never write in the pipeline what a prospect said, a partner's name, or a conversation. Stage and dates only.
 - Each follow-up: the date, the reason, and a draft message for the owner to send.
 - When a contact goes quiet for two weeks, say so in the next SALES line.

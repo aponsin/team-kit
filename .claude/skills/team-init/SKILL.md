@@ -51,7 +51,9 @@ Then:
 5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the windows, the platforms), and why.
 6. **`CHANGELOG.md`**: copy `templates/CHANGELOG.md`, with one entry: "0.1.0: team set up."
 7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer.
-8. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.
+8. **Team files from the templates**: copy `templates/PUBLISH-LOG.md` to `docs/PUBLISH-LOG.md`, `templates/MONEY-WATCH.md` to `docs/MONEY.md`, and `templates/GOAL.md` to `docs/GOAL.md` (replace `{{Business name}}` and `{{date}}`; leave the goal sections empty for the owner to fill in). Create the empty folders `docs/briefs/` and `docs/pickup/`. Copy `docs/RECOVERY.md` as it is.
+9. **Outside helpers**: if the owner names an outside helper in setup, copy `packs/outside/outside-helper.md` to `docs/roles/outside-helper.md`. Otherwise skip it.
+10. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.
 
 Do not write any secrets. Do not create a place for passwords.
 

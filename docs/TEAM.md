@@ -26,6 +26,10 @@ Set up for {{Business name}} on {{date}}. Every agent reads this after `CLAUDE.m
 
 Lane roles (picked at setup; see `packs/`) are described in `docs/roles/`.
 
+## Branches and merging
+
+Each role works on its own branch, named for its lane (`content/`, `shop/`, `sales/`, `admin/`). Only Publisher merges into `main`. Nothing sits uncommitted at the end of a turn.
+
 ## How work flows
 
 1. **Manager** sends a task: the goal, what done looks like, and the files involved.

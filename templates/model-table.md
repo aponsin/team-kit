@@ -27,3 +27,8 @@ Rule of thumb: **judgment** roles use Opus at medium effort. **Mechanical** role
 | Context keeper task | Haiku | low | Count and report |
 
 Change a row here and in the session's own settings together.
+
+## Permission mode
+
+Every session runs in **auto** mode. "Read-only" roles (Reviewer, Checker, Security, Triage) are a **rule in their brief**, not a setting: they report and never change files. The brief is the only place that decides it, so check the brief if a role starts changing things.
+
