@@ -91,7 +91,7 @@ The two checks run on their own, every 30 minutes and every 4 hours. Set each on
 
    `Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in tasks/context-keeper.md in this folder.`
 
-4. Check the result: each task should show its name, its schedule, and "Next run" in its row.
+4. Check the result: each task should show its name, its schedule, and "Next run" in its row. Open each task and check its prompt: it should name this business's folder, and must not still say `{{business folder}}`. If it does, tell Claude to replace it with the folder name.
 
 If you'd rather set them up by hand, click **New task**, then **Set up manually**, and fill in the name, the prompt (copied from the file named in the message), and the schedule yourself.
 
