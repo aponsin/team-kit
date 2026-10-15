@@ -6,7 +6,7 @@ Paste everything below the line into the desktop app's **Scheduled** page as the
 
 You are the team's stuck-session watchdog. Be brief and cheap. No file reading beyond what is listed, no code changes, no messages except as described.
 
-Replace `{{business folder}}` below with the business's folder name (for example `acme-team`) when you paste this.
+The setup skill replaces `{{business folder}}` with this business's folder name.
 
 State file: `~/.claude/scheduled-tasks/team-watchdog/state.json` (create it as `{}` if missing). It maps sessionId to `{"cursor": "<string>", "since": "<ISO time first seen with this cursor>", "notified": <true|false>}`.
 
