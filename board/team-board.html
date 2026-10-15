@@ -372,7 +372,7 @@ function agentMinutesByDay(){
   // An agent works on one thing at a time: overlapping intervals of the same agent count once.
   const per={};
   state.initiatives.forEach(i=>{const log=(Array.isArray(i.phaseLog)?i.phaseLog:[]).filter(e=>e&&num(e.start)!=null).sort((a,b)=>a.start-b.start);
-    log.forEach((e,k)=>{if(e.wait||!e.who||e.who==="the owner")return;const next=log[k+1];
+    log.forEach((e,k)=>{if(e.wait||!e.who||e.who==="Owner")return;const next=log[k+1];
       const end=num(e.end)??(next?next.start:(i.status==="done"?(num(i.doneAt)??Date.now()):Date.now()));
       if(end>e.start)(per[e.who]=per[e.who]||[]).push([e.start,end])})});
   const out={};

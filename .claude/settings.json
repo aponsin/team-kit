@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'This session was just cleared after a /handoff. Before answering anything else, including a queued teammate message, run the pickup skill (/pickup) for this role, then deal with the message.'"
+          }
+        ]
+      }
+    ]
+  }
+}
