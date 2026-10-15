@@ -134,7 +134,9 @@ If you'd rather set them up by hand, click **Scheduled**, then **New task**, the
 
 2. Manager will ask you a few quick checks in the Manager session. Each one comes with buttons. Tap the button that matches what you see:
    - **"Open the board and tell me whether it loads."** Open the link on your phone. Tap **Yes, it loads** if you see the heading "Flight Board". Tap **It does not load** if you don't, and say what you see.
-   - **Test decision.** Manager may show a test question with two buttons. Tap one. It should appear as sent.
+   - **Test decision.** Manager puts a test question on the board with two buttons. Tap the row to open it, then tap one of the buttons.
+     The first time, a box asks **"Let this artifact send messages to your Claude session?"** Tap **Allow**. This is how your answers on the board reach Manager. It asks only once. If you tap **Don't allow**, your answers stay on the board and Manager only sees them at its next check.
+     After you allow it, the item should say your choice was sent to Manager.
    - **Test screenshot.** Manager may ask you to upload a picture. Tap the button, choose any photo, and confirm it opens.
 3. Bookmark the link on your phone once the first check passes.
 4. You should see the heading "Flight Board", with "Waiting on you: nothing yet".
