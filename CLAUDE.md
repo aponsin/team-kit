@@ -59,8 +59,8 @@ CHANGELOG.md       What changed, newest first.
 
 - **Review levels.** Every output that goes public gets a review level, set by Manager:
   - **None:** internal notes, drafts that stay private, changes to docs.
-  - **Quick (Reviewer):** a product description, a post, a small change to the shop.
-  - **Full (Reviewer plus a second specialist):** anything with money, legal or medical claims, customer data, or a new public page.
+  - **Quick (a reviewer):** a product description, a post, a small change to the shop. The reviewer is the Reviewer role if the team has one, otherwise Editor for text and Manager for everything else.
+  - **Full (a reviewer plus a second specialist):** anything with money, legal or medical claims, customer data, or a new public page. Same reviewer rule as Quick.
 - **Editor's OK.** Anything a customer reads gets Editor's OK on the exact text before Publisher puts it live.
 - **Nothing invented.** Never make up a fact about the business: no prices, dates, awards, stock levels, reviews, testimonials or stories that the owner has not given us. If a fact is missing, leave it empty and ask.
 - **Done** means every item below is true, and you say so in one word each.
