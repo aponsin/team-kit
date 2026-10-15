@@ -34,7 +34,11 @@ An environment is a named place in Claude Code desktop that holds one business's
 
 ## Step 2: run the setup
 
-1. Click in the message box at the bottom of the chat window (the box that says "Reply…" or similar, where you type to Claude). Type `/team-init` and press Return.
+1. Click in the message box at the bottom of the chat window (the box that says "Reply…" or similar, where you type to Claude). Type this and press Return:
+
+   ```text
+   /team-init
+   ```
 2. Answer the ten questions, one at a time. They are: the business name; what it does in one line; your first name; which lane packs you want (writing, shop, sales, operations, software); the languages; the names of the platforms you publish on (shop, blog, email); your two publish windows; and your quiet hours.
 3. At the end it writes your files and prints a list of sessions to create.
 
