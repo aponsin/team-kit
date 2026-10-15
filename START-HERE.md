@@ -80,25 +80,25 @@ The command also saves a backup of your settings file next to it, called `settin
 
 ## Step 6: schedule the two checks
 
-The two checks run on their own, every 30 minutes and every 4 hours. Set each one up with Claude's help.
+The two checks run on their own: the watchdog every 30 minutes, and the context keeper every 4 hours. Ask the **Manager** session to set them up. Manager works inside your business's folder, so it can find the files.
 
-1. In the desktop app, click **Scheduled** in the sidebar, then click **New task** and choose **Create with Claude**.
-2. Type this message, replacing `<your-repo-name>` with the name you used in Step 4, and press Return:
+1. Open the **Manager** session.
+2. Type this message, and press Return:
 
    ```text
-   Create a scheduled task named Team watchdog that runs every 30 minutes. Its prompt is the text in ~/Documents/<your-repo-name>/tasks/watchdog.md.
+   Create a scheduled task named Team watchdog that runs every 30 minutes, using the prompt in tasks/watchdog.md in this folder.
    ```
 
 3. Do the same again with this message:
 
    ```text
-   Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in ~/Documents/<your-repo-name>/tasks/context-keeper.md.
+   Create a scheduled task named Context keeper that runs every 4 hours, using the prompt in tasks/context-keeper.md in this folder.
    ```
 
 4. If Claude says a schedule that often isn't allowed, reply "yes, hourly is fine". The watchdog still works at an hourly check, just less often.
-5. Check the result: each task should show its name, its schedule, and "Next run" in its row. Open each task and check its prompt: it should name this business's folder, and must not still say `{{business folder}}`. If it does, tell Claude to replace it with the folder name.
+5. Check the result: open the **Scheduled** page in the sidebar. Each task should show its name, its schedule, and "Next run". Open each task and check its prompt: it should name your business's folder, and must not contain `{{business folder}}`. If it does, tell Manager.
 
-If you'd rather set them up by hand, click **New task**, then **Set up manually**, and fill in the name, the prompt (copied from the file named in the message), and the schedule yourself.
+If you'd rather set them up by hand, click **Scheduled**, then **New task**, then **Set up manually**. Fill in the name, paste the prompt from the file named in the message, and choose the schedule yourself.
 
 ## Step 7: open the flight board
 

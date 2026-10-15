@@ -40,6 +40,8 @@ Ask: "Write these files now? (yes / change something)". Only write on "yes".
 
 Read these first: `CLAUDE.md`, `docs/TEAM.md`, `templates/`, and the role briefs in `packs/core/` and each chosen pack folder.
 
+The business's folder name is the name of the folder this session is running in (the last part of the path). Use it wherever a file says `{{business folder}}`.
+
 Then:
 
 1. **`CLAUDE.md`**: replace `{{Business name}}` and add one line under the title: "For {{business}}: {{one-line description}}." Keep every rule.
@@ -48,7 +50,8 @@ Then:
 4. **`STATUS.md`**: copy `templates/STATUS.md`. Fill in the business name and the date. Leave the sections empty except **Now**: "Team set up. Waiting for the first task."
 5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the windows, the platforms), and why.
 6. **`CHANGELOG.md`**: copy `templates/CHANGELOG.md`, with one entry: "0.1.0: team set up."
-7. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.
+7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions.
+8. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.
 
 Do not write any secrets. Do not create a place for passwords.
 
