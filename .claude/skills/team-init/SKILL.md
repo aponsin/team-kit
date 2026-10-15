@@ -38,6 +38,10 @@ Ask: "Write these files now? (yes / change something)". Only write on "yes".
 
 ## 3. Write the files
 
+First create the folders `docs/`, `docs/roles/`, `docs/briefs/` and `docs/pickup/` if they do not exist.
+
+If a step has already run in an earlier attempt (for example, a file is already written or a line is already in `CLAUDE.md`), check it first and do not repeat it. Never add the same line twice.
+
 Read these first: `CLAUDE.md`, `docs/TEAM.md`, `templates/`, and the role briefs in `packs/core/` and each chosen pack folder.
 
 The business's folder name is the name of the folder this session is running in (the last part of the path). Use it wherever a file says `{{business folder}}`.
@@ -50,7 +54,7 @@ Then:
 4. **`STATUS.md`**: copy `templates/STATUS.md`. Fill in the business name and the date. Leave the sections empty except **Now**: "Team set up. Waiting for the first task."
 5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the windows, the platforms), and why.
 6. **`CHANGELOG.md`**: copy `templates/CHANGELOG.md`, with one entry: "0.1.0: team set up."
-7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer.
+7. **Scheduled-task prompts**: in `tasks/watchdog.md` and `tasks/context-keeper.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer. Also replace the list of role names in each prompt with exactly the sessions this team will have (the list you print in step 4), so the checks watch the right sessions.
 8. **Team files from the templates**: copy `templates/PUBLISH-LOG.md` to `docs/PUBLISH-LOG.md`, `templates/MONEY-WATCH.md` to `docs/MONEY.md`, and `templates/GOAL.md` to `docs/GOAL.md` (replace `{{Business name}}` and `{{date}}`; leave the goal sections empty for the owner to fill in). Create the empty folders `docs/briefs/` and `docs/pickup/`. Copy `docs/RECOVERY.md` as it is.
 9. **Outside helpers**: if the owner names an outside helper in setup, copy `packs/outside/outside-helper.md` to `docs/roles/outside-helper.md`. Otherwise skip it.
 10. **Model table**: write `docs/MODELS.md` from `templates/model-table.md`, marking each chosen role with its model and effort.

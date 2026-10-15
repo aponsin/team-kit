@@ -4,4 +4,5 @@ Renewals, free-trial ends, budget caps. Checked each month by a scheduled task (
 
 | Item | Date or limit | Who acts | Reminder sent |
 |---|---|---|---|
-| {{item}} | {{date or amount}} | {{owner or role}} | |
+
+- None yet.
