@@ -53,19 +53,20 @@ For each session on the list, in this order, starting with Manager:
 1. Click **New** in the sidebar (the **+** at the top left). A new, empty chat opens with a box to type in.
 2. Before you type, check the environment shown at the bottom left of the box. It should be your business's environment, for example `acme-team`. If it isn't, click it and choose your business's environment from the list.
 3. Check the model at the bottom right of the box. Click it and choose the model and effort shown on the list (for example **Opus** with **medium**, or **Sonnet** with **low**).
-4. Type the first message from the list and press Return. The session takes its name from the first word, so the message must start with the role name. It always has this form, with the role name in both places:
+4. Type the role name on its own, and press Return. For the Writer session, that is just `Writer`. This names the session.
+5. Then type the pickup command, and press Return:
 
    ```text
-   <Role>. Run /pickup <Role>.
+   /pickup <Role>
    ```
 
    For example, for the Writer session:
 
    ```text
-   Writer. Run /pickup Writer.
+   /pickup Writer
    ```
 
-5. Check the session's name at the top of the chat. It should match the role on the list exactly, with the same capital letters. The name is how the team's scheduled checks and messages find each session. If the name is wrong, click the name at the top and rename it before you go on.
+6. Check the session's name at the top of the chat. It should match the role on the list exactly, with the same capital letters. The name is how the team's scheduled checks and messages find each session. If the name is wrong, click the name at the top and rename it before you go on.
 
 Start with **Manager**. Every other session reports to it.
 
