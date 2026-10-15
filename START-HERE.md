@@ -47,13 +47,13 @@ For each session on the list:
 
    **Name it exactly as shown, with the same capital letters.** The name is how the team's scheduled checks and messages find each session. A session named `writer` or `Writer 2` will be missed. If you make a mistake, rename the session (click its name again) before you go on.
 3. Under the model menu, pick the model and effort shown on the list.
-4. Paste the first message from the list and press Return. It is always "You are <Role>. Run /pickup <Role>.", with the role name filled in, for example "You are Writer. Run /pickup Writer."
+4. Paste the first message from the list and press Return. It is always `You are <Role>. Run /pickup <Role>.`, with the role name filled in, for example `You are Writer. Run /pickup Writer.`
 
 Start with **Manager**. Every other session reports to it.
 
-## Step 4: turn on Remote Control
+## Step 4 (optional): turn on Remote Control
 
-Remote Control lets you open a session from your phone.
+Remote Control lets you follow up on the team's work from your phone or another computer. You can open a session, read what it did, and reply, without being at your Mac. Skip this step if you only work at your Mac.
 
 1. In the Manager session, type `/remote-control` and press Return. Or click the session's menu and choose **Remote Control**.
 2. Turn it on for each session you want on your phone.
