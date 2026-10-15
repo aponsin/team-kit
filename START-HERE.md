@@ -57,7 +57,11 @@ Start with **Manager**. Every other session reports to it.
 
 Remote Control lets you follow up on the team's work from your phone or another computer. You can open a session, read what it did, and reply, without being at your Mac. Skip this step if you only work at your Mac.
 
-1. In the Manager session, type `/remote-control` and press Return. Or click the session's menu and choose **Remote Control**.
+1. In the Manager session, type this and press Return. Or click the session's menu and choose **Remote Control**.
+
+   ```text
+   /remote-control
+   ```
 2. Turn it on for each session you want on your phone.
 3. Check the Claude app on your phone. The sessions should appear there.
 
@@ -104,13 +108,21 @@ If you'd rather set them up by hand, click **Scheduled**, then **New task**, the
 
 ## Step 7: open the flight board
 
-1. In the Manager session, type: "Set up the flight board." Manager publishes the board from `board/team-board.html` as a private page.
+1. In the Manager session, type this and press Return. Manager publishes the board from `board/team-board.html` as a private page.
+
+   ```text
+   Set up the flight board.
+   ```
 2. Manager sends you a link. Open it on your phone and bookmark it.
 3. You should see the heading "Flight Board", with "Waiting on you: nothing yet".
 
 ## Step 8: the first test
 
-1. In the Manager session, type: "Start with a short test: write one product description for [an item you sell] and send it through review."
+1. In the Manager session, type this and press Return. Replace the text in square brackets with an item you sell.
+
+   ```text
+   Start with a short test: write one product description for [an item you sell] and send it through review.
+   ```
 2. Watch the board. The item appears under "Initiatives in flight" and moves through the phases.
 3. When Manager asks you for an approval, it appears under "Waiting on you". Tap **Done**, or type your answer.
 
