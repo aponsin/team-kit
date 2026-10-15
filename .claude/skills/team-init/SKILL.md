@@ -52,7 +52,11 @@ Then:
 
 Do not write any secrets. Do not create a place for passwords.
 
-Commit the result on the current branch with the message "Team set up for {{business}}". Nothing uncommitted at the end.
+Commit the result on a new branch called `team-setup`, never directly on `main`:
+
+1. If the current branch is `main`, create and switch to `team-setup`. If it already exists, switch to it.
+2. Commit with the message "Team set up for {{business}}".
+3. Tell the owner: "Setup is on the `team-setup` branch. Merge it into `main` before you open the Manager session." Nothing uncommitted at the end.
 
 ## 4. Print the session list
 
