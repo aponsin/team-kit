@@ -45,7 +45,7 @@ STATUS.md          The flight board in text: what is in flight, what waits on th
 docs/TEAM.md       Who does what, how work flows, how to report.
 docs/BOARD.md      The rules for keeping the online flight board true.
 docs/roles/        One brief per role: what it owns, what it never does.
-DECISIONS.md       Decision log. Append only.
+DECISIONS.md       Decision log. Append only. See section 3a.
 CHANGELOG.md       What changed, newest first.
 ```
 
@@ -54,6 +54,21 @@ CHANGELOG.md       What changed, newest first.
 **Parking a task.** When the owner says "put a pin in this", or a task takes too long: write what is done, what is left, and the open question under **Next** in `STATUS.md`. Commit, move on.
 
 **Context hygiene.** Long sessions re-read their whole history on every turn, which costs money and slows them down. Use `/handoff` before a session gets full, then `/clear`, then `/pickup`.
+
+## 3a. Decisions
+
+Every decision that is not obvious goes in `DECISIONS.md`: a choice of wording, a supplier, a price approach, a process change, a rule the team now follows. The log is how the team remembers why, after a session is cleared and a new one starts.
+
+- **Append only.** Add a new entry at the bottom. Never edit or delete an old one. If a decision changes, write a new entry that says it replaces the old one.
+- **Format:**
+
+  ```
+  ## YYYY-MM-DD - Short title
+  Chose: ...   Because: ...   Rejected: ... because ...   Revisit if: ...
+  ```
+
+- **Who writes:** the role that made the decision, or Manager if the owner decided. Say who in the entry.
+- **When the owner decides,** Manager writes the entry the same day.
 
 ## 4. Quality and review
 

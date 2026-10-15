@@ -12,5 +12,6 @@ A starter kit for running a small business with a team of Claude Code sessions. 
 - `packs/`: role briefs for writing, shop, sales, operations and software work.
 - `/team-init`: asks you ten questions, then writes your business's own files.
 - The flight board: a page you can open on a phone.
+- A decision log (`DECISIONS.md`): every choice the team makes is written down with its reason, so nobody has to remember it.
 
 **Built from how a working team of Claude Code sessions is run in practice.** [LESSONS.md](LESSONS.md) lists the traps that shaped these rules.
