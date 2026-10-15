@@ -8,7 +8,7 @@ Set up for {{Business name}} on {{date}}. Every agent reads this after `CLAUDE.m
 
 **No agent asks the owner directly.** Every approval goes through Manager. For approvals the app itself enforces (a permission prompt, a change to a setting), the agent asks Manager, who tells the owner which session to open and what to type.
 
-**Agents message each other by name** with `SendMessage`, using the role names below.
+**Agents message each other by session ID**, using the role names below to find them. Several businesses can run on one computer, and their sessions can share names. Before sending, list the sessions and pick the one whose folder is this business's folder. Never send to a session in another folder.
 
 **Never hang.** Every command that can run long gets a time limit. A test server or preview is stopped when the job ends, pass or fail. If one step waits more than 10 minutes, or a tool fails twice, stop and tell Manager which step.
 
