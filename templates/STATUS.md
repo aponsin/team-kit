@@ -14,6 +14,12 @@ The order of the next tasks, one line each.
 
 - 🔴 Question, the one decision needed, and the recommendation.
 
+## Dates and money
+
+Renewals, free-trial ends and budget caps. Full list in `docs/MONEY.md`; the monthly money watch checks it. One line each.
+
+- None yet.
+
 ## Beyond now
 
 Ideas and requests not started, with the reason they wait.
