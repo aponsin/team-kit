@@ -70,7 +70,9 @@ Two scheduled tasks check on the team: the watchdog and the context keeper. They
 python3 -c "import json,os,shutil; p=os.path.expanduser(\"~/.claude/settings.json\"); shutil.copy(p,p+\".bak\"); d=json.load(open(p)); a=d.setdefault(\"permissions\",{}).setdefault(\"allow\",[]); r=\"mcp__ccd_session_mgmt__send_message\"; a.append(r) if r not in a else None; json.dump(d,open(p,\"w\"),indent=2); print(\"done\")"
 ```
 
-3. You should see the word `done`. If you see an error instead, stop and tell Manager what it says.
+3. You should see the word `done`.
+
+If instead you see **"command not found"**, or a box asks you to install **developer tools**, click **Install**, wait until it finishes (it can take 10 minutes), then paste the line again. If it still fails, don't try to fix it yourself. Tell Manager what the screen says, and Manager will set up the permission for you in the Claude session.
 
 The command also saves a backup of your settings file next to it, called `settings.json.bak`. It's safe to run it again: it won't add the permission twice.
 
