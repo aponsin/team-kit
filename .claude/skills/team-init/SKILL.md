@@ -32,9 +32,10 @@ Show one short summary:
 
 - the business name, owner's first name, languages, and the publish windows;
 - the sessions that will be created (the list from the chosen packs, plus Manager, Publisher and Triage);
-- which files you will write.
+- which files you will write;
+- that the files will be committed on a new branch called `team-setup` and then merged into `main`, so the Manager session reads them.
 
-Ask: "Write these files now? (yes / change something)". Only write on "yes".
+Ask: "Write these files now, commit them on `team-setup` and merge into `main`? (yes / change something)". Only write on "yes". That one yes covers the merge; do not ask about it again.
 
 ## 3. Write the files
 
@@ -65,7 +66,7 @@ Commit the result on a new branch called `team-setup`, never directly on `main`:
 
 1. If the current branch is `main`, create and switch to `team-setup`. If it already exists, switch to it.
 2. Commit with the message "Team set up for {{business}}".
-3. Tell the owner: "Setup is on the `team-setup` branch. Merge it into `main` before you open the Manager session." Nothing uncommitted at the end.
+3. Merge `team-setup` into `main` (the owner's yes in step 2 covers it). Tell the owner: "Setup is merged into `main`. Now create the sessions, starting with Manager." Nothing uncommitted at the end.
 
 ## 4. Print the session list
 
