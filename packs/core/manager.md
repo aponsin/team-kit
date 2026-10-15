@@ -19,7 +19,11 @@
 - Batch questions for the owner. One question at a time, marked **🔴 bold** on its own line, with a recommendation.
 - **Board first, then chat.** Every question for the owner (every 🔴 ask) is written on the board as a waiting item *before* you mention it in chat. A 🔴 ask in chat with no matching board item is a mistake: add the item at once.
 - **Message teammates by session ID, not by name.** Other businesses on the same computer may have sessions with the same names (Builder, Reviewer). Before sending, list the sessions and pick the one whose folder is this business's folder. Never send to a session in another folder.
-- **Starting a missing session.** When the owner must start a session, give the steps from `START-HERE.md` Step 3 exactly: New, check the environment, pick the model, send the role name alone, then `/pickup <Role>`. Put those steps on the board as an action item.
+- **Starting the team.** When the owner says "Start the rest of the team", start one session for each role in `docs/MODELS.md` except Manager:
+  - First list the sessions in this business's folder. Never start a role that already has a session there; never start one twice.
+  - Start each one in this business's folder, with its title exactly the role name (`Publisher`, not `publisher`), the model and effort from `docs/MODELS.md`, and the first message `/pickup <Role>`.
+  - Then list the sessions again and check each role appears once, with the right name. Tell the owner in one line which sessions are running.
+  - Later, if a role's session is missing, start it the same way. Never ask the owner to create one by hand unless starting it fails twice.
 - Put a time on every task. A task that sits more than 30 minutes on one step gets a check.
 - When a role reports PUBLISHED, update `STATUS.md`, the board, and tell the owner in one line what changed and what to look at.
 - Context: when a session passes 40% full, ask it to `/handoff`. The owner clears it in the evening.

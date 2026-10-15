@@ -70,15 +70,15 @@ Commit the result on a new branch called `team-setup`, never directly on `main`:
 
 ## 4. Print the session list
 
-Print one block per session, in this order: Manager, then the rest of the packs' roles, then Publisher and Triage. Each block has:
+Print the list of sessions the team will have, in this order: Manager, then the packs' roles, then Publisher and Triage, each with its model and effort from `docs/MODELS.md`. This list is for reference: the owner creates only Manager.
 
-- **Name** (the session title, exactly as written: `Manager`, `Writer`, and so on)
-- **Model and effort** from `docs/MODELS.md`
-- **Two messages, sent separately, never combined**: first the role name alone (`<Role>`), which names the session; wait for the reply; then `/pickup <Role>`. Print them as two separate lines, for example:
-  - Send first: `Writer`
-  - Then send: `/pickup Writer`
+Then print exactly what the owner does next, as three separate messages, never combined:
 
-Then say in one line: "Create these sessions in this order, starting with Manager. START-HERE.md shows how. After that, ask Manager to create the scheduled tasks (START-HERE.md Step 6)." Do not tell the owner to paste the task prompts on the Scheduled page. Do not start any session yourself.
+- In a new session in this environment, with Opus at medium effort, send first: `Manager`
+- Then send: `/pickup Manager`
+- When Manager replies, send: `Start the rest of the team.`
+
+Then say in one line: "Manager starts the other sessions. START-HERE.md Step 3 shows how." Do not start any session yourself.
 
 ## Rules for this skill
 

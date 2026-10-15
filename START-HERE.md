@@ -47,29 +47,33 @@ You should see a message ending "Setup written. Create these sessions next."
 
 If the setup asks you to **merge** (for example "Merge team-setup into main now?"), click **Yes, I'll merge**. The sessions in Step 3 read the files from `main`, so the merge must happen first.
 
-## Step 3: create the sessions
+## Step 3: create Manager, and let it start the team
 
-For each session on the list, in this order, starting with Manager:
+You create one session yourself: **Manager**. Manager then starts every other session for you.
 
-1. Click **New** in the sidebar (the **+** at the top left). A new, empty chat opens with a box to type in.
-2. Before you type, check the environment shown at the bottom left of the box. It should be your business's environment, for example `acme-team`. If it isn't, click it and choose your business's environment from the list.
-3. Check the model at the bottom right of the box. Click it and choose the model and effort shown on the list (for example **Opus** with **medium**, or **Sonnet** with **low**).
-4. Type the role name on its own, and press Return. For the Writer session, that is just `Writer`. This names the session.
-5. Then type the pickup command, and press Return:
-
-   ```text
-   /pickup <Role>
-   ```
-
-   For example, for the Writer session:
+1. Click **New** in the sidebar (the **+** at the top left). A new, empty chat opens.
+2. Check the environment at the bottom left of the box. It should be your business's environment, for example `acme-team`. If it isn't, click it and choose yours.
+3. Check the model at the bottom right of the box. Choose **Opus** with **medium** effort.
+4. Type this and press Return. It names the session:
 
    ```text
-   /pickup Writer
+   Manager
    ```
 
-6. Check the session's name at the top of the chat. It should match the role on the list exactly, with the same capital letters. The name is how the team's scheduled checks and messages find each session. If the name is wrong, click the name at the top and rename it before you go on.
+5. Then type this and press Return:
 
-Start with **Manager**. Every other session reports to it.
+   ```text
+   /pickup Manager
+   ```
+
+6. When Manager has replied, type this and press Return:
+
+   ```text
+   Start the rest of the team.
+   ```
+
+   Manager starts one session per role on the setup list, each with its name, model and effort. They appear in the sidebar under **Manager**. It may take a minute or two.
+7. Check the sidebar: each role on the setup list should appear once, with exactly its name. If one is missing or appears twice, tell Manager.
 
 ## Step 4 (optional): turn on Remote Control
 
