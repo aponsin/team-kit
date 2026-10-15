@@ -83,19 +83,20 @@ The command also saves a backup of your settings file next to it, called `settin
 The two checks run on their own, every 30 minutes and every 4 hours. Set each one up with Claude's help.
 
 1. In the desktop app, click **Scheduled** in the sidebar, then click **New task** and choose **Create with Claude**.
-2. Type this message, and press Return:
+2. Type this message, replacing `<your-repo-name>` with the name you used in Step 4, and press Return:
 
    ```text
-   Create a scheduled task named Team watchdog that runs every 30 minutes. Its prompt is the text in tasks/watchdog.md in this folder.
+   Create a scheduled task named Team watchdog that runs every 30 minutes. Its prompt is the text in ~/Documents/<your-repo-name>/tasks/watchdog.md.
    ```
 
 3. Do the same again with this message:
 
    ```text
-   Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in tasks/context-keeper.md in this folder.
+   Create a scheduled task named Context keeper that runs every 4 hours. Its prompt is the text in ~/Documents/<your-repo-name>/tasks/context-keeper.md.
    ```
 
-4. Check the result: each task should show its name, its schedule, and "Next run" in its row. Open each task and check its prompt: it should name this business's folder, and must not still say `{{business folder}}`. If it does, tell Claude to replace it with the folder name.
+4. If Claude says a schedule that often isn't allowed, reply "yes, hourly is fine". The watchdog still works at an hourly check, just less often.
+5. Check the result: each task should show its name, its schedule, and "Next run" in its row. Open each task and check its prompt: it should name this business's folder, and must not still say `{{business folder}}`. If it does, tell Claude to replace it with the folder name.
 
 If you'd rather set them up by hand, click **New task**, then **Set up manually**, and fill in the name, the prompt (copied from the file named in the message), and the schedule yourself.
 
