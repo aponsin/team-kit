@@ -20,12 +20,15 @@ git clone https://github.com/<your-github-username>/<your-repo-name>.git ~/Docum
 
 You should see "Cloning into..." and then the prompt returns.
 
-## Step 1: open the business folder
+## Step 1: create an environment for the business (3 min)
 
-1. In Claude Code desktop, look at the environment menu at the bottom of the window (it shows **Choose environment** or the name of the environment you are in).
-2. Click **New environment**, and name it after your business, for example `acme-team`. Use this one environment for all of your business's sessions. This keeps them apart from your other projects.
-3. Pick the folder `~/Documents/<your-repo-name>` (the same name you used in step 4). Click **Open**.
-4. Click **Trust** if it asks whether you trust the folder.
+An environment is a named place in Claude Code desktop that holds one business's folder and sessions. Give each business its own, so its sessions stay apart from your other projects.
+
+1. At the bottom of the window, click the environment menu (it says **Choose environment** or shows the name of the current one). Click **New environment**.
+2. In the **Name** box, type your business name, for example `acme-team`.
+3. Under **Folders**, click **Add**. Choose `~/Documents/<your-repo-name>` (the folder from step 4 above). Check that the folder now appears in the list, and that its name is not the default one.
+4. Leave **Environment variables** empty. Click **Create environment**.
+5. If a box asks whether you trust the folder, click **Trust**.
 
 ## Step 2: run the setup
 
