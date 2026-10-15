@@ -9,10 +9,13 @@ If a menu looks different from what is written here, the app has changed. Look f
 1. **Install Claude Code desktop.** Download it from claude.com/claude-code and open it. Sign in with your Claude account.
 2. **Install Git.** On a Mac, open the Terminal app and type `git --version`, then press Return. If a box offers to install developer tools, accept it.
 3. **Get this kit.** On GitHub, open the team-kit page and click **Use this template**, then **Create a new repository**. Name it after your business, for example `acme-team`. Keep it **private**. Click **Create repository**.
-4. **Copy it to your Mac.** In the Terminal, type this, using your own GitHub name and repository name:
+4. **Copy it to your Mac.** Open the Terminal app and type the command below. Before you press Return, replace the two parts in angle brackets (`<` and `>`), and leave out the brackets themselves:
+
+   - `<your-github-username>`: your GitHub username. It is shown on your GitHub profile page, under your name. Not your email.
+   - `<your-repo-name>`: the name you gave the new repository in step 3, for example `acme-team`. Use the same name in both places.
 
 ```bash
-git clone https://github.com/YOUR-NAME/acme-team.git ~/Documents/acme-team
+git clone https://github.com/<your-github-username>/<your-repo-name>.git ~/Documents/<your-repo-name>
 ```
 
 You should see "Cloning into..." and then the prompt returns.
@@ -20,7 +23,7 @@ You should see "Cloning into..." and then the prompt returns.
 ## Step 1: open the business folder
 
 1. In Claude Code desktop, click **Open folder** (or **New session**, then choose a folder).
-2. Pick `~/Documents/acme-team`. Click **Open**.
+2. Pick the folder `~/Documents/<your-repo-name>` (the same name you used in step 4). Click **Open**.
 3. Click **Trust** if it asks whether you trust the folder.
 
 ## Step 2: run the setup
