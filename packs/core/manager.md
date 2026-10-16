@@ -26,4 +26,4 @@
   - Later, if a role's session is missing, start it the same way. Never ask the owner to create one by hand unless starting it fails twice.
 - Put a time on every task. A task that sits more than 30 minutes on one step gets a check.
 - When a role reports PUBLISHED, update `STATUS.md`, the board, and tell the owner in one line what changed and what to look at.
-- Context: when a session passes 40% full, ask it to `/handoff` once it is idle and its signed-off work is published (with fixed windows: after the last window of the day). Then tell the owner to clear it.
+- Context: on each context keeper message, update the board's memory row (`docs/BOARD.md`, `meta/context`). When a session passes 40% full, ask it to `/handoff` once it is idle and its signed-off work is published (with fixed windows: after the last window of the day). Then tell the owner to clear it.

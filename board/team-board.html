@@ -184,6 +184,18 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 .ik{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);vertical-align:1px}
 .ik.discuss{background:var(--warn-soft);color:var(--warn)}
 .ik.assess{background:var(--track);color:var(--muted)}
+.ctx{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.2rem,1fr));gap:6px}
+.ctx-t{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--panel);display:flex;flex-direction:column;gap:3px}
+.ctx-t .nm{font:700 .85rem var(--display);letter-spacing:.04em;text-transform:uppercase;display:flex;justify-content:space-between;gap:4px}
+.ctx-t .pc{font:600 .78rem var(--mono);font-variant-numeric:tabular-nums}
+.ctx-bar{height:5px;border-radius:3px;background:var(--track);overflow:hidden}
+.ctx-bar i{display:block;height:100%}
+.ctx-t.g .pc{color:var(--ok)}.ctx-t.g .ctx-bar i{background:var(--ok)}
+.ctx-t.a .pc{color:var(--warn)}.ctx-t.a .ctx-bar i{background:var(--warn)}
+.ctx-t.r .pc{color:var(--bad)}.ctx-t.r .ctx-bar i{background:var(--bad)}
+.ctx-t.saved{border:2px dashed var(--bad);background:var(--bad-soft)}
+.ctx-t .sv{font:600 .68rem var(--mono);color:var(--bad);text-transform:uppercase;letter-spacing:.03em}
+.ctx-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .livever{font:600 .9rem var(--mono);color:var(--ok);margin-left:10px}
 </style>
@@ -193,6 +205,11 @@ svg text{fill:var(--muted);font:10px var(--mono)}
     <h1>Flight Board<span class="livever" id="livever"></span></h1>
     <div class="clock"><span class="live-dot" id="dot"></span><span id="clock">--:--</span> · <span id="synced">connecting…</span></div>
   </header>
+
+  <section aria-labelledby="h-ctx">
+    <div class="ctx-head"><h2 id="h-ctx" style="margin:0">Agents' memory</h2><span class="w-sub" id="ctxnote"></span></div>
+    <div class="ctx" id="ctx"></div>
+  </section>
 
   <section>
     <details class="panel todo" id="todobox"><summary><h2 id="h-todo">To-do</h2><span class="w-sub" id="todocount"></span><span class="caret" aria-hidden="true">▸</span></summary>
@@ -497,7 +514,17 @@ document.addEventListener("submit",async e=>{const c=e.target.dataset&&e.target.
   const max=Math.max(0,...listOpen(c).map(t=>num(t.rank)||0)),kind=$(c+"kind")?$(c+"kind").value:null;
   const doc={text:text.slice(0,200),rank:max+1,area:"Added by the owner",addedAt:Date.now(),done:false};if(kind)doc.kind=kind;
   try{await dbRef.doc(c+"/t"+Date.now()).set(doc);inp.value=""}catch(_){}});
-function renderAll(){renderTodo();renderQueue();renderLive();renderWaiting();renderBoard();renderFeed();renderUsage()}
+// Agents' memory: how full each session's context is (green under 40%, amber to 69%, red from 70%), from Manager's checks.
+// A dashed red tile means the agent saved its notes and waits for the owner to type /clear in it.
+function renderCtx(){const m=state.meta.find(d=>d.id==="context")||{},a=m.agents||{};
+  const ORDER=["Manager","Builder","Admin","Demos","Mainsite","Linguist","Checker","Security","Release","Triage","Sales","Reviewer"];
+  const names=[...ORDER.filter(n=>a[n]),...Object.keys(a).filter(n=>!ORDER.includes(n)).sort()];
+  const ready=names.filter(n=>a[n].saved);
+  $("ctxnote").textContent=(ready.length?`${ready.length} to clear: ${ready.join(", ")} · `:"")+(num(m.at)?"checked "+dayLabel(m.at):"");
+  $("ctx").innerHTML=names.length?names.map(n=>{const p=Math.max(0,Math.min(100,num(a[n].pct)??0)),c=p>=70?"r":p>=40?"a":"g";
+    return `<div class="ctx-t ${c}${a[n].saved?" saved":""}" title="${esc(n)}: ${p}% of its memory used${a[n].saved?"; saved, type /clear in it":""}"><span class="nm">${esc(n)}<span class="pc">${p}%</span></span><span class="ctx-bar"><i style="width:${p}%"></i></span>${a[n].saved?'<span class="sv">Saved · /clear me</span>':""}</div>`}).join(""):'<div class="note">No check yet.</div>';
+}
+function renderAll(){renderCtx();renderTodo();renderQueue();renderLive();renderWaiting();renderBoard();renderFeed();renderUsage()}
 function tick(){$("clock").textContent=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
   document.querySelectorAll("[data-eta]").forEach(e=>{const t=+e.dataset.eta;e.textContent=t>Date.now()?dur(t-Date.now()):"due"});
   document.querySelectorAll("[data-next]").forEach(e=>{const t=+e.dataset.next;e.textContent=t>Date.now()?"in "+dur(t-Date.now()):"due now"});}

@@ -77,3 +77,9 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **A scheduled task's alerts silently never arrived.** Its messages to Manager needed approval, and no one was there to approve them.
 *Rule:* add the messaging permission to `~/.claude/settings.json` once (`START-HERE.md` Step 5), so scheduled tasks can reach Manager.
+
+**A single push notification was missed, and a session waited hours for its reset.**
+*Rule:* anything the owner must act on also gets a standing sign on the board. A saved session shows as a dashed red tile, "Saved · /clear me", until it is cleared.
+
+**Manager tried to clear sessions itself, and couldn't.** A session can only clear the sessions it started, and Remote Control blocks it too.
+*Rule:* clearing stays with the owner. Manager asks for `/handoff`, marks the tile, and tells the owner which sessions to clear.

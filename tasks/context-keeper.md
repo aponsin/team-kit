@@ -11,8 +11,8 @@ The setup skill replaces `{{business folder}}` with this business's folder name.
 1. Load tools with ToolSearch: "select:mcp__ccd_session_mgmt__list_sessions,mcp__ccd_session_mgmt__get_usage,mcp__ccd_session_mgmt__send_message".
 2. `list_sessions` (limit 25). Keep sessions that are not archived, whose folder contains `{{business folder}}`, and whose title is one of: Manager, Writer, Editor, Shop, Support, Sales, Outreach, Admin, Research, Publisher, Triage, Reviewer, Director. Ignore any scheduled-task session.
 3. For each, call `get_usage` with its sessionId and read `context.percentUsed`. Skip any whose context status is not "ok".
-4. If any session is at 40% or more, send ONE message to the session titled "Manager" (find its sessionId in the list), in this shape:
-   "Context keeper: over 40%: <Title> <pct>%, <Title> <pct>% (Manager itself: <pct>%). Decide which may /handoff now; tell the owner 'Ready to clear: ...' once each confirms."
-   List them in descending order. Include Manager if it qualifies.
-5. If none is at 40% or more, send nothing.
-6. Reply with one line: the list sent, or "all under 40%".
+4. Send ONE message to the session titled "Manager" (find its sessionId in the list, in this business's folder), in this shape:
+   "Context keeper: <Title> <pct>%, <Title> <pct>%, ... Over 40%: <titles, or none>. Update the board's memory row; decide which may /handoff now."
+   List every kept session, highest first, Manager included.
+5. Send nothing else.
+6. Reply with one line: the list sent.

@@ -23,6 +23,7 @@ Collections in the page's database:
 - `waiting/<id>`: `kind` (`decision`, `action`, `session`, `later`), `text`, `where`, `initiative`, `since`, `done`, `steps[]` (numbered, click-by-click; fill this for every action), `expect` (what the owner should see), `options[]` (for decisions), `images[]` (for anything about how it looks).
 - `events/<id>`: `at`, `version`, `text`. One line per published thing.
 - `meta/live`: `version`, `commit`. Update on each PUBLISHED.
+- `meta/context`: `at` (ms), `agents` (`{Name: {pct, saved}}`). Feeds the "Agents' memory" row at the top: one tile per agent, green under 40%, amber from 40% to 69%, red from 70%. A tile turns dashed red with "Saved · /clear me" when `saved` is true.
 - `usage/<YYYY-MM-DD>`: one row per day at most.
 - `todo/<id>`: `text`, `rank` (order; the owner moves items up and down), `area`, `addedAt`, `done`. Things to get done some day. The owner can add items from the board.
 - `ideas/<id>`: the same fields plus `kind` (`build`, `discuss` or `assess`). The backlog of ideas. The owner can add items from the board.
@@ -41,6 +42,7 @@ What the page does on its own:
 - **Actions carry steps.** Every item for the owner has steps, and anything typed into a terminal goes in a copy-box with its exact command.
 - **Never put an action on the owner's list before its precondition is met.** Add "after X is live" items only once X is live.
 - **Queue versus gate.** `wait: "busy"` means the item waits behind a busy role. `wait: "gate"` means it waits on a decision or condition. Keep each initiative's log sequential; close an entry when the state changes.
+- **Agents' memory.** On each context keeper message, write `meta/context` with every agent's percentage, in the same batch as any other board update. Set `saved: true` when an agent replies that its state is saved after `/handoff`. Drop `saved` once its percentage falls under 30 (it was cleared). Only the owner clears sessions: Manager cannot clear a session it did not start.
 - **Close log entries at every hand-over.** When work moves from one role to another, close the current `phaseLog` entry (set `end`) before opening the next one. An open entry keeps counting time.
 - **Close stale entries.** When an initiative is done, mark it `done` and set `doneAt`. Anything with no movement for a week is marked `paused` with a note.
 - **Replies.** When the owner presses a button or writes a note, the page sends a comment to Manager. At the start of every Manager turn, check the waiting items for a `response` that is not yet done. Act on it, mark the item done, and resolve its comment thread.
