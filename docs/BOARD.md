@@ -23,6 +23,7 @@ Collections in the page's database:
 - `waiting/<id>`: `kind` (`decision`, `action`, `session`, `later`), `text`, `where`, `initiative`, `since`, `done`, `steps[]` (numbered, click-by-click; fill this for every action), `expect` (what the owner should see), `options[]` (for decisions), `images[]` (for anything about how it looks).
 - `events/<id>`: `at`, `version`, `text`. One line per published thing.
 - `meta/live`: `version`, `commit`. Update on each PUBLISHED.
+- `meta/models`: `agents` (`{Name: {model, effort}}`). Shown in small print under each name in the crew list, for example "Opus 5.5 · medium". Manager fills it from each session's settings and updates it when a setting changes.
 - `ctx/<Role>`: `pct`, `at` (ms). Each role writes its own reading here whenever it logs a step.
 - `meta/context`: `at` (ms), `agents` (`{Name: {pct, saved}}`). Written by Manager from the context keeper's report (every 2 hours). Each tile shows the freshest reading, from the role itself or from the keeper, and dims when it is older than 2 hours. Feeds the "Agents' memory" row at the top: one tile per agent, green under 40%, amber from 40% to 69%, red from 70%. A tile turns dashed red with "Saved · /clear me" when `saved` is true.
 - `usage/<YYYY-MM-DD>`: one row per day at most.
@@ -40,6 +41,8 @@ What the page does on its own:
 
 ## Rules
 
+- **Models on the board.** Keep `meta/models` true. Compare it with `docs/MODELS.md` after any crash or restart, and fix any session that drifted.
+- **Crew notes stay current.** When a role goes idle or picks up new work, update its note in the crew list the same day.
 - **One board id per task.** Never reuse an initiative's id for a second piece of work: a step logged against the old id lands on the wrong item.
 - **Every ask goes on the board**, even a small one, as an initiative, the moment it is handed out.
 - **Decisions go on the board, never only in chat.** A question marked 🔴 in chat must also be a waiting item.

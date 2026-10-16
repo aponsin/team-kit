@@ -133,3 +133,9 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **A step landed on the wrong board item.** One id had been reused for two pieces of work.
 *Rule:* one board id per task, never reused.
+
+**Model settings drifted after crashes, unnoticed.**
+*Rule:* the board shows each session's model and effort under its name, checked against `docs/MODELS.md`.
+
+**Two crew-list notes went stale in a day.**
+*Rule:* Manager updates a role's note whenever it goes idle or picks up new work.
