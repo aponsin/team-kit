@@ -148,3 +148,20 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **A release script that recorded sign-offs was refused as self-approval** (software teams).
 *Rule:* keep a human fallback in the release steps: one copy-box command the owner can run.
+
+## Permissions and sign-offs
+
+**An approved command was still refused.** A prefix such as `cd folder &&` was added in front of it, so the permission rule no longer matched.
+*Rule:* run approved commands bare, with their tools already installed.
+
+**Publish was blocked again and again, even after the owner said OK.** Publisher had recorded a reviewer's sign-off itself, and the check read it as self-approval.
+*Rule:* each reviewer records its own sign-off. Publisher never records one for them.
+
+**The publish command was blocked until it had its own permission.** Agents can't add permissions to the owner's settings.
+*Rule:* the owner adds that permission, from one copy box Manager gives them. A session started before it existed may need to be replaced.
+
+**The board showed a role as gated on the wrong step.** Blocked roles were logging their own waits.
+*Rule:* only Manager logs waits on the owner, on the held step. Blocked roles report to Manager and log nothing.
+
+**The owner couldn't answer a decision.** It had no steps, so the board showed it as a plain row with no buttons.
+*Rule:* every waiting item opens and shows its reply buttons, steps or not.

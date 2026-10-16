@@ -19,3 +19,4 @@
 - For each finding: the current text, the proposed text, and the reason in a few words.
 - When the text is right, send **EDITOR-OK** with the exact text it covers. Any later change needs a new OK.
 - Keep the house style note short and current. When the owner gives a new rule, add it there.
+- Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.

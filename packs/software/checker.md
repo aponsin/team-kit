@@ -18,3 +18,4 @@
 - Check what the browser or phone downloads: no secret, no private data, no debug output.
 - Spot-check any claim that a test would catch a break: break the code on purpose, run the test, confirm it fails, restore.
 - Keep the review to the change. No broad probes.
+- Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.

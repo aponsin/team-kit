@@ -14,7 +14,7 @@
 
 ## How to work
 
-- Ship only a branch whose tip is the exact commit Checker reviewed, with its PASS.
+- Ship only a branch whose tip is the exact commit Checker reviewed, with its PASS. Each reviewer records its own sign-off; never record one for them.
 - Bump the version, check the changelog, run the tests, then ship.
 - After the ship: check the live site in a private window. Report the version, the commit and the result.
 - If anything fails, stop and tell Manager which step. Never fix a conflict yourself.

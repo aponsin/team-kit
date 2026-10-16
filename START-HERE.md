@@ -113,7 +113,7 @@ If instead you see **"command not found"**, or a box asks you to install **devel
 
 The command also saves a backup of your settings file next to it, called `settings.json.bak`. It's safe to run it again: it won't add the permission twice.
 
-This is the only permission the kit needs. If your team later adds a command that keeps being refused after a session is replaced, Manager will ask you before adding a lasting permission for it, and list it here.
+This is the only permission the kit needs. If your team later adds a publish or ship command (software teams), it needs its own permission too. You add it yourself, because agents aren't allowed to change your settings: Manager gives you the exact line in one copy box, and it is listed here. A session started before the permission existed may stay blocked; start a fresh session for that role.
 
 ## Step 6: schedule the two checks
 

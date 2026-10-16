@@ -18,3 +18,4 @@
 - For each risk: how someone could use it, how bad it is, and the fix.
 - Report **RISKS** most severe first. If nothing is found, say **SECURE** and name what you checked.
 - Never print a secret when you report one. Name the file and the line.
+- Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.

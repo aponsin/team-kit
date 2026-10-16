@@ -294,8 +294,8 @@ function renderWaiting(){
   const item=w=>{const steps=Array.isArray(w.steps)?w.steps:[];
    const head=`<span class="kind ${esc(w.kind)}">${esc(KIND[w.kind]||w.kind||"Ask")}</span>
    <div class="w-text">${esc(w.text)}${w.where?`<div class="w-sub">${esc(w.where)}</div>`:""}${w.initiative?`<div class="w-sub">For: ${esc(w.initiative)}</div>`:""}</div>
-   <span class="age">${num(w.since)?dur(Date.now()-w.since)+" ago":""}${steps.length?' <span class="caret" aria-hidden="true">▸</span>':""}</span>`;
-   if(!steps.length) return `<div class="w-row">${head}</div>`;
+   <span class="age">${num(w.since)?dur(Date.now()-w.since)+" ago":""} <span class="caret" aria-hidden="true">▸</span></span>`;
+   // Every ask opens, with or without steps, so the reply buttons are always reachable.
    return `<details class="w-item" data-id="${esc(w.id)}"${open.has(w.id)?" open":""}><summary class="w-row">${head}</summary>
    <ol class="steps">${steps.map(s=>typeof s==="string"?`<li>${linkify(s)}</li>`:`<li>${linkify(s&&s.text||"")}${s&&s.cmd?`<div class="cmd"><code>${esc(s.cmd)}</code><button type="button" class="copy" data-copy="${esc(s.cmd)}">Copy</button></div>`:""}</li>`).join("")}</ol>${shots(w)}${w.expect?`<div class="expect">You should see: ${esc(w.expect)}</div>`:""}${replyBox(w)}</details>`};
   // "Later" items sit folded in one row at the bottom, so today's asks stay on the first screen.

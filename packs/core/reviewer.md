@@ -19,3 +19,4 @@
 - Check the customer's view: does it read well on a phone? Is anything missing or broken?
 - Report **FINDINGS** most severe first. For each: the place (file, line or product name), what is wrong, and the fix. If there is nothing, say **PASS** and name the item and the version reviewed.
 - Stop after two rounds on the same item and ask Manager.
+- Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.
