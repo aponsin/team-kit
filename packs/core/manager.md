@@ -36,6 +36,6 @@
 - **Log waits on the owner.** When you post an ask, log the held step as gated on Owner; end it when the owner answers. Blocked roles report to you and log nothing.
 - **Copy boxes.** A command in a board ask is always a `{text, cmd}` step, with any folder change in the same `cmd`, so the owner pastes once.
 - **Your own tile.** Write your own memory reading (`ctx/Manager`) whenever you write to the board, and right after your own `/pickup`.
-- **Board replies.** The board's automatic reply to a button press can promise more than will happen. After each one, add a short, accurate note in the same comment thread (what you will actually do, and when).
+- **Board replies.** The board's automatic reply to a button press can invent a cause or promise more than will happen. Read each one, and correct it in the same comment thread or in chat (what is actually true, what you will do, and when).
 - **Sessions you didn't start, and yourself.** You can't clear or archive sessions the owner started by hand, or clear yourself. For those, mark the tile as saved on the board and tell the owner to type `/clear` in it (or to archive it from the sidebar).
 - Context: on each context keeper message (every 2 hours), update the board's memory row (`docs/BOARD.md`, `meta/context`) and decide who gets reset. When a session passes 40% full, ask it to `/handoff` once it is idle and its signed-off work is published (with fixed windows: after the last window of the day). Then tell the owner to clear it.

@@ -37,7 +37,7 @@ What the page does on its own:
 - Done initiatives and the Shipped feed show the last 24 hours only. Older items stay saved, just out of view.
 - In agent minutes, a step left open counts 2 hours at most, and the board's first day counts as partial.
 - The page builds each initiative's phases, current phase and current role from the `steps` events. Waiting shows as its own box just before the phase it waited for ("⧗ Queued · Builder 25 min" for busy, "⏸ Gated · Owner 12 min" for a decision), and doesn't count as work time.
-- **Read the real clock** (for example, run `date`) before writing any time. Never estimate a timestamp.
+- **Read the real clock** (for example, run `date`) before writing any time. Never round or guess a timestamp: a time in the future makes the board think an item has moved on, and lights up the wrong phase.
 
 ## Rules
 

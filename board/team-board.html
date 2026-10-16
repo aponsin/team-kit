@@ -123,9 +123,11 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 .msg{font-size:.82rem;color:var(--muted);min-height:1em}
 .reply.sent{padding:8px 10px;border-radius:6px;font-size:.9rem;background:var(--ok-soft);color:var(--ok)}
 .reply.sent.help{background:var(--bad-soft);color:var(--bad)}
-.crew{padding:6px 0}
-.crew-row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:10px;align-items:start;padding:6px 16px}
-.who{font:700 1rem var(--display);letter-spacing:.04em;text-transform:uppercase}
+/* Crew: compact tiles, several per row. */
+.crew{padding:6px 4px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.crew-row{display:grid;grid-template-columns:6.2rem minmax(0,1fr);gap:8px;align-items:center;padding:3px 12px}
+.crew .ci{font-size:.78rem;padding:1px 7px}
+.who{font:700 .92rem/1.1 var(--display);letter-spacing:.04em;text-transform:uppercase}
 .who .mdl{display:block;font:400 .62rem/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
 .crew-items{display:flex;flex-wrap:wrap;gap:6px}
 .ci{font-size:.85rem;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}

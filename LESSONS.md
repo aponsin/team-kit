@@ -115,8 +115,8 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 **Mock-ups reached the owner straight from an agent, outside the board.**
 *Rule:* look mock-ups go to Manager, who puts them on the board as a decision with labelled screenshots.
 
-**The board's automatic replies to button presses promised too much.**
-*Rule:* Manager follows each one with an accurate note in the same thread.
+**The board's automatic replies to button presses promised too much, and sometimes invented a cause.**
+*Rule:* Manager reads each one and corrects it in the same thread or in chat.
 
 **The red-ask check fired on a mere mention of the red mark.** It blocked a session that wasn't asking anything.
 *Rule:* the check reacts only when the mark starts a line, the way a real ask is written.
@@ -165,3 +165,9 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **The owner couldn't answer a decision.** It had no steps, so the board showed it as a plain row with no buttons.
 *Rule:* every waiting item opens and shows its reply buttons, steps or not.
+
+**The wrong phase lit up on the board.** A guessed time in the future on a gated step made the board think the item had moved on.
+*Rule:* every board time comes from the real clock, never rounded or guessed.
+
+**The crew list took most of the phone screen.** One row per role.
+*Rule:* the crew list shows compact tiles, several per row.
