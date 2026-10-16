@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Stop hook: a reply with a red ask (🔴) must come with a board "waiting" write in the same turn.
+# Stop hook: a reply with a red ask (a line starting with the red mark) must come with a board "waiting" write in the same turn.
 # Agents that aren't Manager should send questions to Manager instead of asking the owner.
 import json, sys
 try:
@@ -15,6 +15,16 @@ try:
     lines = open(path, encoding="utf-8").read().splitlines()
 except Exception:
     sys.exit(0)
+RED = "\U0001F534"
+
+def asks(text):
+    # A real ask starts a line with the red mark (after spaces, list dashes, quote marks or bold markers).
+    # A mention in the middle of a sentence is not an ask.
+    for line in text.splitlines():
+        if line.lstrip(" \t-*>_").startswith(RED):
+            return True
+    return False
+
 red = wrote = False
 for line in reversed(lines):
     try:
@@ -30,7 +40,7 @@ for line in reversed(lines):
     if e.get("type") != "assistant" or not isinstance(content, list):
         continue
     for c in content:
-        if c.get("type") == "text" and "\U0001F534" in (c.get("text") or ""):
+        if c.get("type") == "text" and asks(c.get("text") or ""):
             red = True
         if c.get("type") == "tool_use" and c.get("name") == "ArtifactData":
             s = json.dumps(c.get("input") or {})

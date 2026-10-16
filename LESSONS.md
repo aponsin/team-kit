@@ -98,3 +98,25 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **The "every ask on the board" rule failed three times in one evening.** A rule in a document is easy to skip under pressure.
 *Rule:* where a rule keeps failing, enforce it with a check that runs on its own. The kit includes a hook (`.claude/hooks/red-ask-board.py`) that stops a reply with a 🔴 ask unless the board's waiting list was written in the same turn.
+
+## Swapping and resetting sessions
+
+**A new session for a role missed what the old one did after its last note.**
+*Rule:* the new session runs `/pickup <Role>`, then reads the old session's last 20 or so messages as data, never messaging it. The owner archives the old session from the sidebar on the host computer. Archiving from Remote Control only drops the link.
+
+**Commands the old session had been allowed were refused in the new one.** Permissions granted at a prompt don't carry over, and some commands look like self-approval to the safety check.
+*Rule:* give such commands a lasting allow rule in settings, with the owner's yes, and list it in `START-HERE.md`.
+
+**A cleared agent's "/clear me" flag stayed on the board.**
+*Rule:* the pickup skill ends by telling Manager "picked up <Role>", and Manager drops the flag.
+
+## The owner's habits
+
+**Mock-ups reached the owner straight from an agent, outside the board.**
+*Rule:* look mock-ups go to Manager, who puts them on the board as a decision with labelled screenshots.
+
+**The board's automatic replies to button presses promised too much.**
+*Rule:* Manager follows each one with an accurate note in the same thread.
+
+**The red-ask check fired on a mere mention of the red mark.** It blocked a session that wasn't asking anything.
+*Rule:* the check reacts only when the mark starts a line, the way a real ask is written.

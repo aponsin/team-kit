@@ -19,4 +19,6 @@ description: Resume a team role after /clear or at the start of a fresh session.
 
 4. **Report to the owner in at most five lines**, starting with the business name: what is published, what is in flight, and the one thing you need from the owner (if anything). Then do the note's **Next step**.
 
+5. **Tell Manager you're back** (skip this if you are Manager): send Manager one message, "picked up <Role>". Find Manager by session id, in this business's folder. Manager uses it to drop your "/clear me" flag on the board.
+
 Keep the session lean: read sections, not whole files, and do not re-read what the note already says.
