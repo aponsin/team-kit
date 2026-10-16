@@ -78,6 +78,9 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 **A scheduled task's alerts silently never arrived.** Its messages to Manager needed approval, and no one was there to approve them.
 *Rule:* add the messaging permission to `~/.claude/settings.json` once (`START-HERE.md` Step 5), so scheduled tasks can reach Manager.
 
+**Real agents stopped being measured after a day or two.** Each scheduled run leaves its own session behind, and the runs pushed the agents out of the most recent 25 sessions the task looked at.
+*Rule:* when a scheduled task lists sessions, set the limit well above the number of agents (the kit uses 50), and skip the tasks' own runs.
+
 **A single push notification was missed, and a session waited hours for its reset.**
 *Rule:* anything the owner must act on also gets a standing sign on the board. A saved session shows as a dashed red tile, "Saved · /clear me", until it is cleared.
 

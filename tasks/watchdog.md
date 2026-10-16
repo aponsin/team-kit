@@ -11,7 +11,7 @@ The setup skill replaces `{{business folder}}` with this business's folder name.
 State file: `~/.claude/scheduled-tasks/team-watchdog/state.json` (create it as `{}` if missing). It maps sessionId to `{"cursor": "<string>", "since": "<ISO time first seen with this cursor>", "notified": <true|false>}`.
 
 1. Load the session tools with ToolSearch: "select:mcp__ccd_session_mgmt__list_sessions,mcp__ccd_session_mgmt__list_events,PushNotification".
-2. Call `list_sessions` (limit 25). Keep only sessions whose folder contains `{{business folder}}`, that are not archived, and whose title is one of: Manager, Writer, Editor, Shop, Support, Sales, Outreach, Admin, Research, Publisher, Triage, Reviewer, Director. Ignore any scheduled-task session.
+2. Call `list_sessions` (limit 50). Keep only sessions whose folder contains `{{business folder}}`, that are not archived, and whose title is one of: Manager, Writer, Editor, Shop, Support, Sales, Outreach, Admin, Research, Publisher, Triage, Reviewer, Director. Skip any session whose title starts with `{{business name}}:` (those are this team's own scheduled-task runs), and any other scheduled-task session.
 3. For each kept session that is running, call `list_events` with limit 1. Take the cursor string after `Pass before_uuid="` in the header as its fingerprint. If it equals the fingerprint in state, keep `since`. Otherwise store the new fingerprint with `since` = now. Remove sessions from state that are no longer running.
 4. A session is STUCK if it is running and its fingerprint has not changed for 30 minutes or more.
 5. If any session is STUCK:
