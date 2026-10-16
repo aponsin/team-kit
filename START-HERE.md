@@ -104,14 +104,14 @@ Two scheduled tasks check on the team: the watchdog and the context keeper. They
 2. Copy this whole line, paste it into the Terminal, and press Return:
 
 ```bash
-python3 -c "import json,os,shutil; p=os.path.expanduser(\"~/.claude/settings.json\"); shutil.copy(p,p+\".bak\"); d=json.load(open(p)); a=d.setdefault(\"permissions\",{}).setdefault(\"allow\",[]); r=\"mcp__ccd_session_mgmt__send_message\"; a.append(r) if r not in a else None; json.dump(d,open(p,\"w\"),indent=2); print(\"done\")"
+python3 -c "import json,os,shutil; p=os.path.expanduser(\"~/.claude/settings.json\"); os.makedirs(os.path.dirname(p),exist_ok=True); t=open(p).read().strip() if os.path.exists(p) else \"\"; os.path.exists(p) and shutil.copy(p,p+\".bak\"); d=json.loads(t) if t else {}; a=d.setdefault(\"permissions\",{}).setdefault(\"allow\",[]); r=\"mcp__ccd_session_mgmt__send_message\"; a.append(r) if r not in a else None; open(p,\"w\").write(json.dumps(d,indent=2)); print(\"done\")"
 ```
 
 3. You should see the word `done`.
 
 If instead you see **"command not found"**, or a box asks you to install **developer tools**, click **Install**, wait until it finishes (it can take 10 minutes), then paste the line again. If it still fails, don't try to fix it yourself. Tell Manager what the screen says, and Manager will set up the permission for you in the Claude session.
 
-The command also saves a backup of your settings file next to it, called `settings.json.bak`. It's safe to run it again: it won't add the permission twice.
+It works whether or not the settings file exists yet, so you don't need to create it first. If the file already exists, the command saves a backup next to it, called `settings.json.bak`. It's safe to run it again: it won't add the permission twice.
 
 This is the only permission the kit needs. If your team later adds a publish or ship command (software teams), it needs its own permission too. You add it yourself, because agents aren't allowed to change your settings: Manager gives you the exact line in one copy box, and it is listed here. A session started before the permission existed may stay blocked; start a fresh session for that role.
 
