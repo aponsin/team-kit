@@ -55,7 +55,13 @@ section{min-width:0}
 .eta{text-align:right;font-variant-numeric:tabular-nums}
 .eta .big{font:600 1.3rem var(--mono)}
 .eta .lbl{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.track{grid-column:1/-1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.track{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px}
+.track>.step{flex:1 1 0;min-width:0}
+.wait{flex:0 0 auto;font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.03em;text-align:center;padding:5px 6px;border-radius:4px;border:1px dashed var(--warn);color:var(--warn);background:var(--warn-soft);white-space:nowrap}
+.wait.gate{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.wait small{display:block;font-weight:400;opacity:.85}
+.wait.live{animation:pulse 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.wait.live{animation:none}}
 .step{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.03em;text-align:center;padding:5px 2px;border-radius:4px;background:var(--track);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .step.done{background:var(--ok-soft);color:var(--ok)}
 .step.skip{background:transparent;color:var(--muted);border:1px dashed var(--line);text-decoration:line-through;text-decoration-color:var(--line)}
@@ -76,7 +82,7 @@ section{min-width:0}
 details.done-list summary{cursor:pointer;color:var(--muted);padding:10px 16px}
 /* two columns below */
 .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
-@media (max-width:760px){.cols{grid-template-columns:1fr}.i-row{grid-template-columns:1fr}.eta{text-align:left}.track{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:760px){.cols{grid-template-columns:1fr}.i-row{grid-template-columns:1fr}.eta{text-align:left}.track>.step{flex:1 1 22%}}
 .feed{list-style:none;margin:0;padding:0}
 .feed li{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:9px 16px;border-top:1px solid var(--line)}
 .feed li:first-child{border-top:0}
@@ -184,18 +190,19 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 .ik{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);vertical-align:1px}
 .ik.discuss{background:var(--warn-soft);color:var(--warn)}
 .ik.assess{background:var(--track);color:var(--muted)}
-.ctx{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.2rem,1fr));gap:6px}
-.ctx-t{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--panel);display:flex;flex-direction:column;gap:3px}
-.ctx-t .nm{font:700 .85rem var(--display);letter-spacing:.04em;text-transform:uppercase;display:flex;justify-content:space-between;gap:4px}
-.ctx-t .pc{font:600 .78rem var(--mono);font-variant-numeric:tabular-nums}
-.ctx-bar{height:5px;border-radius:3px;background:var(--track);overflow:hidden}
+.ctx{display:flex;flex-wrap:wrap;gap:4px}
+.ctx-t{border:1px solid var(--line);border-radius:6px;padding:2px 7px 3px;background:var(--panel);display:inline-flex;flex-direction:column;gap:2px;min-width:5.6rem}
+.ctx-t .nm{font:700 .78rem/1.2 var(--display);letter-spacing:.04em;text-transform:uppercase;display:flex;justify-content:space-between;gap:4px}
+.ctx-t .pc{font:600 .72rem var(--mono);font-variant-numeric:tabular-nums}
+.ctx-bar{height:3px;border-radius:3px;background:var(--track);overflow:hidden}
 .ctx-bar i{display:block;height:100%}
 .ctx-t.g .pc{color:var(--ok)}.ctx-t.g .ctx-bar i{background:var(--ok)}
 .ctx-t.a .pc{color:var(--warn)}.ctx-t.a .ctx-bar i{background:var(--warn)}
 .ctx-t.r .pc{color:var(--bad)}.ctx-t.r .ctx-bar i{background:var(--bad)}
 .ctx-t.saved{border:2px dashed var(--bad);background:var(--bad-soft)}
-.ctx-t .sv{font:600 .68rem var(--mono);color:var(--bad);text-transform:uppercase;letter-spacing:.03em}
-.ctx-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+.ctx-t .sv{font:600 .6rem/1 var(--mono);color:var(--bad);text-transform:uppercase;letter-spacing:.03em}
+.ctx-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 8px;margin-bottom:4px}
+.ctx-head h2{font-size:.95rem}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .livever{font:600 .9rem var(--mono);color:var(--ok);margin-left:10px}
 </style>
@@ -265,7 +272,7 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox")closeShot()});
 const PHASES=[["plan","Plan"],["make","Make"],["edit","Edit"],["review","Review"],["sign","Sign-off"],["publish","Publish"],["live","Live"]];
 const KIND={decision:"Decision",action:"Your click",session:"Session",later:"Later"};
-const state={initiatives:[],waiting:[],events:[],usage:[],meta:[],todo:[],ideas:[]};
+const state={initiatives:[],waiting:[],events:[],usage:[],meta:[],todo:[],ideas:[],initRaw:[],steps:[]};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=v=>typeof v==="number"&&isFinite(v)?v:null;
@@ -375,12 +382,19 @@ async function onReply(e){
 const DAY=864e5;
 function phaseIndex(p){return PHASES.findIndex(x=>x[0]===p)}
 function phaseTimes(log,doneAt){const t={};const l=(Array.isArray(log)?log:[]).filter(e=>e&&e.phase&&num(e.start)!=null).sort((a,b)=>a.start-b.start);
-  l.forEach((e,k)=>{const next=l[k+1];const en=num(e.end)??(next?next.start:(num(doneAt)??Date.now()));t[e.phase]=(t[e.phase]||0)+Math.max(0,en-e.start)});return t}
+  l.forEach((e,k)=>{if(e.wait)return;const next=l[k+1];const en=num(e.end)??(next?next.start:(num(doneAt)??Date.now()));t[e.phase]=(t[e.phase]||0)+Math.max(0,en-e.start)});return t}
+// Waits: time an item sat queued (its agent was busy, wait:"busy") or gated (held by a decision, wait:"gate"),
+// shown as a box just before the phase it waited for. Back-to-back waits of the same kind and person merge.
+function waitBoxes(log,doneAt){const out={};const l=(Array.isArray(log)?log:[]).filter(e=>e&&e.phase&&num(e.start)!=null).sort((a,b)=>a.start-b.start);
+  l.forEach((e,k)=>{if(!e.wait)return;const next=l[k+1];const open=num(e.end)==null&&!next&&doneAt==null;const en=num(e.end)??(next?next.start:(num(doneAt)??Date.now()));
+    const kind=e.wait==="busy"?"busy":"gate",arr=out[e.phase]=out[e.phase]||[],last=arr[arr.length-1];
+    if(last&&last.kind===kind&&last.who===e.who){last.ms+=Math.max(0,en-e.start);last.open=open}else arr.push({kind,who:e.who||"",ms:Math.max(0,en-e.start),open})});
+  return out}
 function initRow(i){
   const idx=phaseIndex(i.phase), stuck=i.status==="stuck", queued=i.status==="queued", times=phaseTimes(i.phaseLog,i.status==="done"?i.doneAt:null);
-  const skip=Array.isArray(i.skip)?i.skip:[];
-  const steps=PHASES.map(([k,l],n)=>{let c="step";if(skip.includes(k)&&n!==idx)c+=" skip";else if(i.status==="done"||n<idx)c+=" done";else if(n===idx)c+=" now"+(stuck?" stuck":queued?" queued":"");
-    const t=(n===idx&&i.status!=="done"&&i.who)?`<small>${esc(i.who)}${times[k]?" · "+dur(times[k]):""}</small>`:times[k]?`<small>${dur(times[k])}</small>`:(skip.includes(k)?"<small>not needed</small>":"<small>&nbsp;</small>");return `<div class="${c}" title="${esc(l)}">${esc(l)}${t}</div>`}).join("");
+  const skip=Array.isArray(i.skip)?i.skip:[], waits=waitBoxes(i.phaseLog,i.status==="done"?i.doneAt:null);
+  const steps=PHASES.map(([k,l],n)=>{const pre=(waits[k]||[]).map(w=>`<div class="wait ${w.kind}${w.open?" live":""}" title="${w.kind==="gate"?"Waiting on a decision":"Waiting: the agent was busy"} before ${esc(l)}">${w.kind==="gate"?"⏸ Gated":"⧗ Queued"}<small>${esc(w.who)}${w.who?" · ":""}${dur(w.ms)}</small></div>`).join("");let c="step";if(skip.includes(k)&&n!==idx)c+=" skip";else if(i.status==="done"||n<idx)c+=" done";else if(n===idx)c+=" now"+(stuck?" stuck":queued?" queued":"");
+    const t=(n===idx&&i.status!=="done"&&i.who)?`<small>${esc(i.who)}${times[k]?" · "+dur(times[k]):""}</small>`:times[k]?`<small>${dur(times[k])}</small>`:(skip.includes(k)?"<small>not needed</small>":"<small>&nbsp;</small>");return pre+`<div class="${c}" title="${esc(l)}">${esc(l)}${t}</div>`}).join("");
   const iss=i.issues||{};const chips=[["bugs","bugs"],["security","security fixes"],["language","wording fixes"]].map(([k,l])=>{const v=num(iss[k])||0;return `<span class="chip ${v?"":"zero"}">${v} ${l}</span>`}).join(" ");
   const eta=num(i.etaLive);
   let etaHtml;
@@ -517,14 +531,36 @@ document.addEventListener("submit",async e=>{const c=e.target.dataset&&e.target.
 // Agents' memory: how full each session's context is (green under 40%, amber to 69%, red from 70%), from Manager's checks.
 // A dashed red tile means the agent saved its notes and waits for the owner to type /clear in it.
 function renderCtx(){const m=state.meta.find(d=>d.id==="context")||{},a=m.agents||{};
-  const ORDER=["Manager","Builder","Admin","Demos","Mainsite","Linguist","Checker","Security","Release","Triage","Sales","Reviewer"];
+  const ORDER=["Manager","Writer","Editor","Shop","Support","Sales","Outreach","Admin","Research","Reviewer","Publisher","Triage","Builder","Checker","Security","Release"];
   const names=[...ORDER.filter(n=>a[n]),...Object.keys(a).filter(n=>!ORDER.includes(n)).sort()];
   const ready=names.filter(n=>a[n].saved);
   $("ctxnote").textContent=(ready.length?`${ready.length} to clear: ${ready.join(", ")} · `:"")+(num(m.at)?"checked "+dayLabel(m.at):"");
   $("ctx").innerHTML=names.length?names.map(n=>{const p=Math.max(0,Math.min(100,num(a[n].pct)??0)),c=p>=70?"r":p>=40?"a":"g";
-    return `<div class="ctx-t ${c}${a[n].saved?" saved":""}" title="${esc(n)}: ${p}% of its memory used${a[n].saved?"; saved, type /clear in it":""}"><span class="nm">${esc(n)}<span class="pc">${p}%</span></span><span class="ctx-bar"><i style="width:${p}%"></i></span>${a[n].saved?'<span class="sv">Saved · /clear me</span>':""}</div>`}).join(""):'<div class="note">No check yet.</div>';
+    return `<div class="ctx-t ${c}${a[n].saved?" saved":""}" title="${esc(n)}: ${p}% of its memory used${a[n].saved?"; saved, type /clear in it":""}"><span class="nm">${esc(n)}<span class="pc">${p}%</span></span><span class="ctx-bar"><i style="width:${p}%"></i></span>${a[n].saved?'<span class="sv">/clear me</span>':""}</div>`}).join(""):'<div class="note">No check yet.</div>';
 }
-function renderAll(){renderCtx();renderTodo();renderQueue();renderLive();renderWaiting();renderBoard();renderFeed();renderUsage()}
+// Steps: each agent logs its own step as it happens, one document per event in "steps":
+// {init: <initiative id>, phase: plan|make|edit|review|sign|publish|live, who, kind: "start"|"end", at: <ms>, wait?: "busy"|"gate", version?}.
+// The page turns them into phase entries, so Manager no longer has to relay or guess times.
+// A "live" event marks the initiative done. Skips: the second sign-off unless level is Full; Edit when customerText is false.
+function enrich(i){
+  const evs=state.steps.filter(e=>e&&e.init===i.id&&e.phase&&num(e.at)!=null).sort((a,b)=>a.at-b.at);
+  const skip=new Set(Array.isArray(i.skip)?i.skip:[]);
+  if(i.level&&i.level!=="Full")skip.add("sign");
+  if(i.customerText===false)skip.add("edit");
+  const out={...i,skip:[...skip]};
+  if(!evs.length)return out;
+  const log=[],open={};
+  evs.forEach(e=>{const key=e.phase+"|"+(e.who||"")+"|"+(e.wait||"");
+    if(e.phase==="live"){out.status="done";out.phase="live";out.doneAt=e.at;if(e.version)out.version=e.version;return}
+    if(e.kind==="end"){const o=open[key];if(o){o.end=e.at;delete open[key]}else log.push({phase:e.phase,who:e.who,start:e.at,end:e.at});return}
+    const en={phase:e.phase,who:e.who,start:e.at};if(e.wait)en.wait=e.wait;log.push(en);open[key]=en});
+  out.phaseLog=(Array.isArray(i.phaseLog)?i.phaseLog:[]).concat(log);
+  if(out.status!=="done"){const last=evs[evs.length-1];
+    if(last.kind!=="end"){out.phase=last.phase;out.who=last.who;out.status=last.wait==="busy"?"queued":"active"}
+    else{const n=phaseIndex(last.phase);const next=PHASES.slice(n+1).find(([k])=>!skip.has(k));out.phase=next?next[0]:last.phase;out.who=null;out.status="active"}}
+  return out;
+}
+function renderAll(){state.initiatives=state.initRaw.map(enrich);renderCtx();renderTodo();renderQueue();renderLive();renderWaiting();renderBoard();renderFeed();renderUsage()}
 function tick(){$("clock").textContent=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
   document.querySelectorAll("[data-eta]").forEach(e=>{const t=+e.dataset.eta;e.textContent=t>Date.now()?dur(t-Date.now()):"due"});
   document.querySelectorAll("[data-next]").forEach(e=>{const t=+e.dataset.next;e.textContent=t>Date.now()?"in "+dur(t-Date.now()):"due now"});}
@@ -535,8 +571,8 @@ setInterval(tick,15000);tick();renderAll();
   if(!db){$("synced").textContent="offline: open in Claude to see live data";return}
   $("dot").classList.add("on"); dbRef=db; renderWaiting();
   window.claude.use("comments").then(c=>{commentsRef=c}).catch(()=>{});
-  const sub=(name)=>db.collection(name).onSnapshot(snap=>{state[name]=snap.docs.map(d=>({id:d.id,...(d.data()||{})}));renderAll();$("synced").textContent="live, updated "+hhmm(Date.now())},
+  const sub=(name)=>db.collection(name).onSnapshot(snap=>{state[name==="initiatives"?"initRaw":name]=snap.docs.map(d=>({id:d.id,...(d.data()||{})}));renderAll();$("synced").textContent="live, updated "+hhmm(Date.now())},
     ()=>{$("dot").classList.remove("on");$("synced").textContent="connection lost, reload"});
-  ["initiatives","waiting","events","usage","meta","todo","ideas"].forEach(sub);
+  ["initiatives","waiting","events","usage","meta","todo","ideas","steps"].forEach(sub);
 })();
 </script>

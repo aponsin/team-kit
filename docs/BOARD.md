@@ -2,7 +2,7 @@
 
 The flight board is a private page the owner reads on a phone. It shows what is in flight, what is waiting on the owner (with buttons whose presses come back to Manager as comments), and what was published and when.
 
-**Manager is the only writer.** Other roles report to Manager, and Manager updates the board in one batch at natural moments: a PUBLISHED line, a new ask from the owner, a decision answered. Batching keeps the cost down.
+**Manager writes the board, with one exception: every role logs its own steps** in the `steps` collection as they happen (below). Manager hand-logging steps from relayed messages went stale and got times wrong. Everything else, Manager updates in one batch at natural moments: a PUBLISHED line, a new ask from the owner, a decision answered.
 
 ## Setup (done once, by Manager)
 
@@ -25,6 +25,8 @@ Collections in the page's database:
 - `meta/live`: `version`, `commit`. Update on each PUBLISHED.
 - `meta/context`: `at` (ms), `agents` (`{Name: {pct, saved}}`). Feeds the "Agents' memory" row at the top: one tile per agent, green under 40%, amber from 40% to 69%, red from 70%. A tile turns dashed red with "Saved · /clear me" when `saved` is true.
 - `usage/<YYYY-MM-DD>`: one row per day at most.
+- `steps/<id>`: one document per event, written by the role doing the work: `init` (the initiative's id), `phase` (`plan`, `make`, `edit`, `review`, `sign`, `publish`, `live`), `who` (the role), `kind` (`start` or `end`), `at` (ms, from the real clock), and optionally `wait` (`busy` or `gate`) and `version`. Log a `start` when you pick up a step and an `end` when you hand it on. Waiting gets its own start and end with `wait` set. A `live` event marks the initiative done.
+- Initiatives also carry `level` (`None`, `Quick` or `Full`) and `customerText` (true or false). The page skips the second sign-off unless the level is Full, and skips Edit when `customerText` is false.
 - `todo/<id>`: `text`, `rank` (order; the owner moves items up and down), `area`, `addedAt`, `done`. Things to get done some day. The owner can add items from the board.
 - `ideas/<id>`: the same fields plus `kind` (`build`, `discuss` or `assess`). The backlog of ideas. The owner can add items from the board.
 
@@ -32,6 +34,8 @@ What the page does on its own:
 - Waiting items of kind `later` fold into one collapsed "Later" row, so today's asks stay on the first screen.
 - Done initiatives and the Shipped feed show the last 24 hours only. Older items stay saved, just out of view.
 - In agent minutes, a step left open counts 2 hours at most, and the board's first day counts as partial.
+- The page builds each initiative's phases, current phase and current role from the `steps` events. Waiting shows as its own box just before the phase it waited for ("⧗ Queued · Builder 25 min" for busy, "⏸ Gated · Owner 12 min" for a decision), and doesn't count as work time.
+- **Read the real clock** (for example, run `date`) before writing any time. Never estimate a timestamp.
 
 ## Rules
 
