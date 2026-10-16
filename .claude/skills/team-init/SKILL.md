@@ -21,7 +21,7 @@ Ask them one at a time, in plain words. Wait for each answer. Offer a default in
 6. **Shop platform.** Name only, for example "Shopify" or "Etsy". No logins. Write "none" if there is no shop.
 7. **Blog or content platform.** Name only. Write "none" if there is none.
 8. **Email tool.** Name only, for example "Mailchimp". Write "none" if there is none.
-9. **Two publish windows.** Local times, for example "9:00 and 16:00", with the time zone. [default: 9:00 and 16:00, local time]
+9. **Publish rhythm.** Should Publisher put each item live as soon as it is signed off, or only at two fixed times a day? [default: as soon as signed off]. If fixed times: ask for the two local times and the time zone, for example "9:00 and 16:00 MST".
 10. **Quiet hours.** When should the team not push to the owner's phone? [default: 21:00 to 08:00]
 
 Never ask for passwords, keys, logins or account numbers. If the owner offers one, say: "Please don't paste that here. Keep it in the platform's own settings."
@@ -30,7 +30,7 @@ Never ask for passwords, keys, logins or account numbers. If the owner offers on
 
 Show one short summary:
 
-- the business name, owner's first name, languages, and the publish windows;
+- the business name, owner's first name, languages, and the publish rhythm;
 - the sessions that will be created (the list from the chosen packs, plus Manager, Publisher and Triage);
 - which files you will write;
 - that the files will be committed on a new branch called `team-setup` and then merged into `main`, so the Manager session reads them.
@@ -50,10 +50,10 @@ The business's folder name is the name of the folder this session is running in 
 Then:
 
 1. **`CLAUDE.md`**: replace `{{Business name}}` and add one line under the title: "For {{business}}: {{one-line description}}." Keep every rule.
-2. **`docs/TEAM.md`**: replace the placeholders. Keep the roles table with only the roles that exist in this team, and remove the rows for roles not picked. If Reviewer is not picked, add to the Editor row: "also reviews the team's text." Fill in the publish windows and quiet hours.
+2. **`docs/TEAM.md`**: replace the placeholders. Keep the roles table with only the roles that exist in this team, and remove the rows for roles not picked. If Reviewer is not picked, add to the Editor row: "also reviews the team's text." Fill in the publish rhythm and quiet hours: under "Publish rhythm", keep only the line that matches the owner's choice.
 3. **`docs/roles/<Role>.md`**: for each chosen role, copy its brief from `packs/` (core or the chosen pack), replace placeholders with the business's name and platforms, and remove any lines that name a platform the owner did not pick.
 4. **`STATUS.md`**: copy `templates/STATUS.md`. Fill in the business name and the date. Leave the sections empty except **Now**: "Team set up. Waiting for the first task."
-5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the windows, the platforms), and why.
+5. **`DECISIONS.md`**: copy `templates/DECISIONS.md`. Add one entry: today's date, "Team set up", what was chosen (the packs, the publish rhythm, the platforms), and why.
 6. **`CHANGELOG.md`**: copy `templates/CHANGELOG.md`, with one entry: "0.1.0: team set up."
 7. **Scheduled-task prompts**: in `tasks/watchdog.md`, `tasks/context-keeper.md` and `tasks/money-watch.md`, replace `{{business folder}}` with the folder name, so the checks only watch this business's sessions, and replace `{{business name}}` with the business name, so each task's name is unique on this computer. Also replace the list of role names in each prompt with exactly the sessions this team will have (the list you print in step 4), so the checks watch the right sessions.
 8. **Team files from the templates**: copy `templates/PUBLISH-LOG.md` to `docs/PUBLISH-LOG.md`, `templates/MONEY-WATCH.md` to `docs/MONEY.md`, and `templates/GOAL.md` to `docs/GOAL.md` (replace `{{Business name}}` and `{{date}}`; leave the goal sections empty for the owner to fill in). Create the folders `docs/briefs/` and `docs/pickup/`, each with an empty `.gitkeep` file so git keeps them. Copy `docs/RECOVERY.md` as it is.

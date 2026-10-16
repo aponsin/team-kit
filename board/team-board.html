@@ -156,7 +156,9 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 .w-item>summary:hover{background:var(--accent-soft)}
 .w-item>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .caret{display:inline-block;color:var(--accent);transition:transform .15s}
-.w-item[open] .caret{transform:rotate(90deg)}
+.w-item[open]>summary .caret{transform:rotate(90deg)}
+.later-sum{padding:10px 16px;color:var(--muted);font:600 .8rem var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.w-later>.w-item,.w-later>.w-row{border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){.caret{transition:none}}
 .steps{margin:0;padding:4px 16px 4px 44px;display:flex;flex-direction:column;gap:6px}
 .steps li{padding-left:2px}
@@ -164,6 +166,25 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 .expect{margin:6px 16px 14px 44px;padding:8px 10px;border-radius:6px;background:var(--ok-soft);color:var(--ok);font-size:.9rem}
 .pv{margin-top:4px;font:400 .8rem var(--mono);color:var(--muted)}
 .pv b{color:var(--ink);font-weight:600}
+.todo>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;padding:12px 16px}
+.todo>summary::-webkit-details-marker{display:none}
+.todo>summary h2{margin:0}
+.todo[open]>summary .caret{transform:rotate(90deg)}
+.todo>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.td-row{display:grid;grid-template-columns:2rem minmax(0,1fr) auto;gap:4px 10px;align-items:start;padding:9px 16px;border-top:1px solid var(--line)}
+.td-n{font:600 .85rem var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
+.td-btns{display:flex;gap:4px}
+.td-btns button,.todo-add button{font:600 .8rem var(--body);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:4px 9px;cursor:pointer;min-width:2.2rem}
+.td-btns button:disabled{opacity:.35;cursor:default}
+.td-btns button.td-done{color:var(--ok);border-color:var(--ok)}
+.td-btns button:focus-visible,.todo-add button:focus-visible,.todo-add input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.todo-add{display:flex;gap:8px;padding:10px 16px 14px;border-top:1px solid var(--line)}
+.todo-add input{flex:1;min-width:0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.todo-add select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px}
+.ik{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);vertical-align:1px}
+.ik.discuss{background:var(--warn-soft);color:var(--warn)}
+.ik.assess{background:var(--track);color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .livever{font:600 .9rem var(--mono);color:var(--ok);margin-left:10px}
 </style>
 
@@ -172,6 +193,17 @@ svg text{fill:var(--muted);font:10px var(--mono)}
     <h1>Flight Board<span class="livever" id="livever"></span></h1>
     <div class="clock"><span class="live-dot" id="dot"></span><span id="clock">--:--</span> · <span id="synced">connecting…</span></div>
   </header>
+
+  <section>
+    <details class="panel todo" id="todobox"><summary><h2 id="h-todo">To-do</h2><span class="w-sub" id="todocount"></span><span class="caret" aria-hidden="true">▸</span></summary>
+      <div id="todolist"><div class="empty">Nothing on the list yet.</div></div>
+      <form class="todo-add" id="todoadd" data-coll="todo"><label class="sr" for="todonew">Add a to-do</label><input id="todonew" maxlength="200" placeholder="Add something to do at some point" autocomplete="off"><button type="submit">Add</button></form>
+    </details>
+    <details class="panel todo" id="ideasbox" style="margin-top:10px"><summary><h2 id="h-ideas">Ideas backlog</h2><span class="w-sub" id="ideascount"></span><span class="caret" aria-hidden="true">▸</span></summary>
+      <div id="ideaslist"><div class="empty">No ideas yet.</div></div>
+      <form class="todo-add" id="ideasadd" data-coll="ideas"><label class="sr" for="ideaskind">Kind</label><select id="ideaskind"><option value="build">Build</option><option value="discuss">Discuss</option><option value="assess">Assess</option></select><label class="sr" for="ideasnew">Add an idea</label><input id="ideasnew" maxlength="200" placeholder="A feature, a question, something to assess" autocomplete="off"><button type="submit">Add</button></form>
+    </details>
+  </section>
 
   <section aria-labelledby="h-wait">
     <h2 id="h-wait">Waiting on you</h2>
@@ -216,7 +248,7 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox")closeShot()});
 const PHASES=[["plan","Plan"],["make","Make"],["edit","Edit"],["review","Review"],["sign","Sign-off"],["publish","Publish"],["live","Live"]];
 const KIND={decision:"Decision",action:"Your click",session:"Session",later:"Later"};
-const state={initiatives:[],waiting:[],events:[],usage:[],meta:[]};
+const state={initiatives:[],waiting:[],events:[],usage:[],meta:[],todo:[],ideas:[]};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=v=>typeof v==="number"&&isFinite(v)?v:null;
@@ -234,13 +266,17 @@ function renderWaiting(){
   const drafts={};el.querySelectorAll("textarea[id^='note-']").forEach(t=>{if(t.value)drafts[t.id]=t.value});
   const focusId=document.activeElement&&document.activeElement.id&&document.activeElement.id.startsWith("note-")?document.activeElement.id:null;
   queueMicrotask(()=>{Object.entries(drafts).forEach(([id,v])=>{const t=document.getElementById(id);if(t)t.value=v});if(focusId){const t=document.getElementById(focusId);if(t){t.focus();t.selectionStart=t.selectionEnd=t.value.length}}});
-  el.innerHTML=list.map(w=>{const steps=Array.isArray(w.steps)?w.steps:[];
+  const item=w=>{const steps=Array.isArray(w.steps)?w.steps:[];
    const head=`<span class="kind ${esc(w.kind)}">${esc(KIND[w.kind]||w.kind||"Ask")}</span>
    <div class="w-text">${esc(w.text)}${w.where?`<div class="w-sub">${esc(w.where)}</div>`:""}${w.initiative?`<div class="w-sub">For: ${esc(w.initiative)}</div>`:""}</div>
    <span class="age">${num(w.since)?dur(Date.now()-w.since)+" ago":""}${steps.length?' <span class="caret" aria-hidden="true">▸</span>':""}</span>`;
    if(!steps.length) return `<div class="w-row">${head}</div>`;
    return `<details class="w-item" data-id="${esc(w.id)}"${open.has(w.id)?" open":""}><summary class="w-row">${head}</summary>
-   <ol class="steps">${steps.map(s=>typeof s==="string"?`<li>${linkify(s)}</li>`:`<li>${linkify(s&&s.text||"")}${s&&s.cmd?`<div class="cmd"><code>${esc(s.cmd)}</code><button type="button" class="copy" data-copy="${esc(s.cmd)}">Copy</button></div>`:""}</li>`).join("")}</ol>${shots(w)}${w.expect?`<div class="expect">You should see: ${esc(w.expect)}</div>`:""}${replyBox(w)}</details>`}).join("");
+   <ol class="steps">${steps.map(s=>typeof s==="string"?`<li>${linkify(s)}</li>`:`<li>${linkify(s&&s.text||"")}${s&&s.cmd?`<div class="cmd"><code>${esc(s.cmd)}</code><button type="button" class="copy" data-copy="${esc(s.cmd)}">Copy</button></div>`:""}</li>`).join("")}</ol>${shots(w)}${w.expect?`<div class="expect">You should see: ${esc(w.expect)}</div>`:""}${replyBox(w)}</details>`};
+  // "Later" items sit folded in one row at the bottom, so today's asks stay on the first screen.
+  const now=list.filter(w=>w.kind!=="later"), later=list.filter(w=>w.kind==="later");
+  el.innerHTML=(now.length?now.map(item).join(""):'<div class="empty">Nothing to do now.</div>')
+    +(later.length?`<details class="w-item w-later" data-id="__later"${open.has("__later")?" open":""}><summary class="later-sum">Later (${later.length}) <span class="caret" aria-hidden="true">▸</span></summary>${later.map(item).join("")}</details>`:"");
   el.querySelectorAll("[data-act]").forEach(b=>b.addEventListener("click",onReply));
 }
 
@@ -319,6 +355,7 @@ async function onReply(e){
     setTimeout(renderWaiting,2600)}
   catch(err){btn.disabled=false;msg.textContent="Not saved ("+(err&&err.code||"error")+"). Tell Manager in chat instead."}
 }
+const DAY=864e5;
 function phaseIndex(p){return PHASES.findIndex(x=>x[0]===p)}
 function phaseTimes(log,doneAt){const t={};const l=(Array.isArray(log)?log:[]).filter(e=>e&&e.phase&&num(e.start)!=null).sort((a,b)=>a.start-b.start);
   l.forEach((e,k)=>{const next=l[k+1];const en=num(e.end)??(next?next.start:(num(doneAt)??Date.now()));t[e.phase]=(t[e.phase]||0)+Math.max(0,en-e.start)});return t}
@@ -358,22 +395,26 @@ function renderBoard(){
   renderCrew();
   const order={stuck:0,active:1,queued:2,paused:3};
   const open=state.initiatives.filter(i=>i.status!=="done").sort((a,b)=>(order[a.status]??1)-(order[b.status]??1)||(num(a.etaLive)??9e15)-(num(b.etaLive)??9e15));
-  const done=state.initiatives.filter(i=>i.status==="done").sort((a,b)=>(num(b.doneAt)??0)-(num(a.doneAt)??0));
+  // Done and the shipped feed show the last 24 hours only; older items stay saved, just out of view.
+  const done=state.initiatives.filter(i=>i.status==="done"&&(num(i.doneAt)??0)>Date.now()-DAY).sort((a,b)=>(num(b.doneAt)??0)-(num(a.doneAt)??0));
   $("board").innerHTML=open.length?open.map(initRow).join(""):'<div class="empty">No initiatives in flight.</div>';
-  $("donebox").hidden=!done.length; $("donesum").textContent=`Done (${done.length})`;
+  $("donebox").hidden=!done.length; $("donesum").textContent=`Done in the last 24 h (${done.length})`;
   $("doneboard").innerHTML=done.slice(0,20).map(initRow).join("");
 }
 function renderFeed(){
-  const ev=[...state.events].sort((a,b)=>(num(b.at)??0)-(num(a.at)??0)).slice(0,25);
-  $("feed").innerHTML=ev.length?ev.map(e=>`<li><time>${num(e.at)?dayLabel(e.at):""}</time><span>${e.version?`<span class="ver">${esc(e.version)}</span> `:""}${esc(e.text)}</span></li>`).join(""):'<li><span></span><span class="empty" style="padding:0">Releases and review results show here as they happen.</span></li>';
+  const ev=[...state.events].filter(e=>(num(e.at)??0)>Date.now()-DAY).sort((a,b)=>(num(b.at)??0)-(num(a.at)??0)).slice(0,25);
+  $("feed").innerHTML=ev.length?ev.map(e=>`<li><time>${num(e.at)?dayLabel(e.at):""}</time><span>${e.version?`<span class="ver">${esc(e.version)}</span> `:""}${esc(e.text)}</span></li>`).join(""):'<li><span></span><span class="empty" style="padding:0">Nothing shipped in the last 24 hours.</span></li>';
 }
+const OPEN_CAP=2*36e5, BOARD_START="";
 function agentMinutesByDay(){
   // Working time from every initiative's steps (not queued or gated time, not the owner), split by calendar day.
   // An agent works on one thing at a time: overlapping intervals of the same agent count once.
   const per={};
   state.initiatives.forEach(i=>{const log=(Array.isArray(i.phaseLog)?i.phaseLog:[]).filter(e=>e&&num(e.start)!=null).sort((a,b)=>a.start-b.start);
     log.forEach((e,k)=>{if(e.wait||!e.who||e.who==="Owner")return;const next=log[k+1];
-      const end=num(e.end)??(next?next.start:(i.status==="done"?(num(i.doneAt)??Date.now()):Date.now()));
+      let end=num(e.end)??(next?next.start:(i.status==="done"?(num(i.doneAt)??Date.now()):Date.now()));
+      // A step nobody closed counts at most 2 hours: otherwise a forgotten step keeps adding minutes until the item is closed.
+      if(num(e.end)==null)end=Math.min(end,e.start+OPEN_CAP);
       if(end>e.start)(per[e.who]=per[e.who]||[]).push([e.start,end])})});
   const out={};
   Object.values(per).forEach(iv=>{iv.sort((a,b)=>a[0]-b[0]);const merged=[];iv.forEach(([s,e])=>{const last=merged[merged.length-1];if(last&&s<=last[1])last[1]=Math.max(last[1],e);else merged.push([s,e])});
@@ -415,7 +456,7 @@ function renderUsage(){
   $("chart").querySelectorAll("rect.hit").forEach(r=>{
     const show=ev=>{tipEl.textContent=r.dataset.tip;tipEl.hidden=false;const box=$("chart").getBoundingClientRect();const rb=r.getBoundingClientRect();tipEl.style.left=Math.max(0,Math.min(rb.left-box.left,box.width-240))+"px";tipEl.style.top="0px"};
     r.addEventListener("mouseenter",show);r.addEventListener("click",show);r.addEventListener("mouseleave",()=>{tipEl.hidden=true})});
-  const tok=sum(lastN(7),"tokensApprox");$("usenote").textContent="Agent minutes count time between reported steps."+(tok?` About ${(tok/1e6).toFixed(1)}M tokens in the last 7 days (approximate).`:" Tokens are approximate, per day.");
+  const tok=sum(lastN(7),"tokensApprox");$("usenote").textContent="Agent minutes count time between reported steps (a step left open counts 2 h at most). The board's first day is partial."+(tok?` About ${(tok/1e6).toFixed(1)}M tokens in the last 7 days (approximate).`:" Tokens are approximate, per day.");
 }
 function renderLive(){const m=state.meta.find(d=>d.id==="live");$("livever").textContent=m&&m.version?"Live now: "+m.version:""}
 function renderQueue(){
@@ -433,7 +474,30 @@ function renderQueue(){
   const fmt=ms=>ms?dur(ms):"—";
   $("qtable").innerHTML=rows.length?`<caption>Last 7 days, per agent</caption><thead><tr><th>Agent</th><th>Working</th><th title="Waiting because this agent was busy with other work">Queued (busy)</th><th title="Held by a pending decision or condition, not by the agent">Gated</th></tr></thead><tbody>${rows.map(([n,t])=>`<tr><td>${esc(n)}</td><td>${fmt(t.work)}</td><td class="${t.busy>t.work&&t.busy>36e5?"hot":""}">${fmt(t.busy)}</td><td>${fmt(t.gate)}</td></tr>`).join("")}</tbody>`:"";
 }
-function renderAll(){renderQueue();renderLive();renderWaiting();renderBoard();renderFeed();renderUsage()}
+// Two ranked lists, each in its own collection, ordered by rank (lower first). Up/Down renumber, Done/Close hides a row.
+// To-do: things to get done some day. Ideas: the product backlog (features to build, things to discuss or assess).
+const LISTS={todo:{box:"todo",close:"Done",empty:"Nothing on the list yet."},ideas:{box:"ideas",close:"Close",empty:"No ideas yet."}};
+const IKIND={build:"Build",discuss:"Discuss",assess:"Assess"};
+function listOpen(c){return (state[c]||[]).filter(t=>!t.done&&t.text).sort((a,b)=>(num(a.rank)??9e9)-(num(b.rank)??9e9))}
+function renderList(c){const L=LISTS[c],list=listOpen(c);
+  $(c+"count").textContent=list.length?`${list.length} item${list.length>1?"s":""}`:"";
+  $(c+"list").innerHTML=list.length?list.map((t,n)=>`<div class="td-row"><span class="td-n">${n+1}</span><div class="w-text">${t.kind&&IKIND[t.kind]?`<span class="ik ${esc(t.kind)}">${IKIND[t.kind]}</span> `:""}${esc(t.text)}${t.area||t.note?`<div class="w-sub">${esc([t.area,t.note].filter(Boolean).join(" · "))}</div>`:""}</div>
+    <span class="td-btns"><button type="button" data-td="up" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Move up"${n?"":" disabled"}>▲</button><button type="button" data-td="down" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Move down"${n<list.length-1?"":" disabled"}>▼</button><button type="button" class="td-done" data-td="done" data-coll="${c}" data-id="${esc(t.id)}" aria-label="${L.close}">${L.close}</button></span></div>`).join(""):`<div class="empty">${L.empty}</div>`;
+}
+function renderTodo(){renderList("todo");renderList("ideas")}
+document.addEventListener("click",async e=>{const b=e.target.closest&&e.target.closest("[data-td]");if(!b||!dbRef)return;const c=b.dataset.coll;if(!LISTS[c])return;
+  const list=listOpen(c),i=list.findIndex(t=>t.id===b.dataset.id);if(i<0)return;b.disabled=true;
+  try{if(b.dataset.td==="done")await dbRef.doc(c+"/"+list[i].id).update({done:true,doneAt:Date.now()});
+    else{const j=b.dataset.td==="up"?i-1:i+1;if(j<0||j>=list.length)return;
+      // Renumber the whole list in its new order so ranks stay distinct.
+      const order=list.slice();[order[i],order[j]]=[order[j],order[i]];
+      for(let k=0;k<order.length;k++){if(order[k].rank!==k+1)await dbRef.doc(c+"/"+order[k].id).update({rank:k+1})}}}
+  catch(_){b.disabled=false}});
+document.addEventListener("submit",async e=>{const c=e.target.dataset&&e.target.dataset.coll;if(!LISTS[c])return;e.preventDefault();const inp=$(c+"new"),text=inp.value.trim();if(!text||!dbRef)return;
+  const max=Math.max(0,...listOpen(c).map(t=>num(t.rank)||0)),kind=$(c+"kind")?$(c+"kind").value:null;
+  const doc={text:text.slice(0,200),rank:max+1,area:"Added by the owner",addedAt:Date.now(),done:false};if(kind)doc.kind=kind;
+  try{await dbRef.doc(c+"/t"+Date.now()).set(doc);inp.value=""}catch(_){}});
+function renderAll(){renderTodo();renderQueue();renderLive();renderWaiting();renderBoard();renderFeed();renderUsage()}
 function tick(){$("clock").textContent=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
   document.querySelectorAll("[data-eta]").forEach(e=>{const t=+e.dataset.eta;e.textContent=t>Date.now()?dur(t-Date.now()):"due"});
   document.querySelectorAll("[data-next]").forEach(e=>{const t=+e.dataset.next;e.textContent=t>Date.now()?"in "+dur(t-Date.now()):"due now"});}
@@ -446,6 +510,6 @@ setInterval(tick,15000);tick();renderAll();
   window.claude.use("comments").then(c=>{commentsRef=c}).catch(()=>{});
   const sub=(name)=>db.collection(name).onSnapshot(snap=>{state[name]=snap.docs.map(d=>({id:d.id,...(d.data()||{})}));renderAll();$("synced").textContent="live, updated "+hhmm(Date.now())},
     ()=>{$("dot").classList.remove("on");$("synced").textContent="connection lost, reload"});
-  ["initiatives","waiting","events","usage","meta"].forEach(sub);
+  ["initiatives","waiting","events","usage","meta","todo","ideas"].forEach(sub);
 })();
 </script>

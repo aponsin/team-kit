@@ -105,7 +105,7 @@ Anything the owner's customers will see (a post, a listing, a page look, an emai
 - **Branches.** Each role works on its own branch, named for its lane (`content/`, `shop/`, `sales/`, `admin/`). Only Publisher merges into `main`. Nothing sits uncommitted at the end of a turn.
 - **Publish log.** Publisher appends one line per publish to `docs/PUBLISH-LOG.md` (template: `templates/PUBLISH-LOG.md`): date and time, what went live, and the result.
 
-- **Two publish windows a day** (the owner sets the times in `docs/TEAM.md`). Publisher puts things live only in those windows, unless the owner says urgent. An urgent fix (a broken page, a wrong price, a safety issue) goes at once.
+- **Publish rhythm.** Publisher puts each item live as soon as it is signed off, unless the owner chose two fixed windows a day at setup (see `docs/TEAM.md`). An urgent fix (a broken page, a wrong price, a safety issue) goes at once.
 - Publisher publishes only what has a review level and the sign-offs that level needs.
 - **Quiet hours.** No pushes to the owner's phone during quiet hours, except urgent ones.
 

@@ -24,6 +24,13 @@ Collections in the page's database:
 - `events/<id>`: `at`, `version`, `text`. One line per published thing.
 - `meta/live`: `version`, `commit`. Update on each PUBLISHED.
 - `usage/<YYYY-MM-DD>`: one row per day at most.
+- `todo/<id>`: `text`, `rank` (order; the owner moves items up and down), `area`, `addedAt`, `done`. Things to get done some day. The owner can add items from the board.
+- `ideas/<id>`: the same fields plus `kind` (`build`, `discuss` or `assess`). The backlog of ideas. The owner can add items from the board.
+
+What the page does on its own:
+- Waiting items of kind `later` fold into one collapsed "Later" row, so today's asks stay on the first screen.
+- Done initiatives and the Shipped feed show the last 24 hours only. Older items stay saved, just out of view.
+- In agent minutes, a step left open counts 2 hours at most, and the board's first day counts as partial.
 
 ## Rules
 
@@ -34,6 +41,7 @@ Collections in the page's database:
 - **Actions carry steps.** Every item for the owner has steps, and anything typed into a terminal goes in a copy-box with its exact command.
 - **Never put an action on the owner's list before its precondition is met.** Add "after X is live" items only once X is live.
 - **Queue versus gate.** `wait: "busy"` means the item waits behind a busy role. `wait: "gate"` means it waits on a decision or condition. Keep each initiative's log sequential; close an entry when the state changes.
+- **Close log entries at every hand-over.** When work moves from one role to another, close the current `phaseLog` entry (set `end`) before opening the next one. An open entry keeps counting time.
 - **Close stale entries.** When an initiative is done, mark it `done` and set `doneAt`. Anything with no movement for a week is marked `paused` with a note.
 - **Replies.** When the owner presses a button or writes a note, the page sends a comment to Manager. At the start of every Manager turn, check the waiting items for a `response` that is not yet done. Act on it, mark the item done, and resolve its comment thread.
 - **Usage.** One row per day at most, from the platform's job times and session usage where easy. Estimates are fine; say so.

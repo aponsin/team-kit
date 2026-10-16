@@ -41,13 +41,13 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 ## Usage and context
 
 **Sessions ran for days without a reset, and each turn got slower and more costly.** Long histories were re-read every turn.
-*Rule:* `/handoff` before a session gets full, then `/clear` and `/pickup`. The context keeper reports sessions over 40%. The evening is the reset window.
+*Rule:* `/handoff` before a session gets full, then `/clear` and `/pickup`. The context keeper reports sessions over 40%. Reset a session once it is idle and its signed-off work is published.
 
 **Models drifted back to a default after a crash.** A session ran at the wrong model and effort without anyone noticing.
 *Rule:* `templates/model-table.md` is checked after any restart.
 
 **Sessions were asked to hold their work until a quiet moment, and it never came.** Busy roles were never reset.
-*Rule:* reset in a fixed window (the evening), not when things feel quiet.
+*Rule:* reset at a defined point (idle, with its signed-off work published), not when things feel quiet.
 
 ## Records and secrets
 
@@ -61,3 +61,19 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **Words such as "guaranteed" and "number one" were written into customer copy without a source.**
 *Rule:* no claims without a source. Use "found on search" style wording, never a ranking promise.
+
+## The flight board
+
+**Time kept counting on finished steps.** A step's log entry was left open after the work moved on, so the board showed hours of work that never happened.
+*Rule:* close the log entry at every hand-over. The board also caps an open step at 2 hours.
+
+**A question was asked only in chat, and the owner missed it.**
+*Rule:* every ask to the owner goes on the board, never only in chat.
+
+**Owners copied text by hand, and made mistakes.**
+*Rule:* any text the owner pastes (a command, a message) goes in a copy box.
+
+## Scheduled tasks
+
+**A scheduled task's alerts silently never arrived.** Its messages to Manager needed approval, and no one was there to approve them.
+*Rule:* add the messaging permission to `~/.claude/settings.json` once (`START-HERE.md` Step 5), so scheduled tasks can reach Manager.
