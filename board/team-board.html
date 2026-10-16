@@ -540,7 +540,7 @@ function renderCtx(){const m=state.meta.find(d=>d.id==="context")||{},a={};
   const ORDER=["Manager","Writer","Editor","Shop","Support","Sales","Outreach","Admin","Research","Reviewer","Publisher","Triage","Builder","Checker","Security","Release"];
   const names=[...ORDER.filter(n=>a[n]),...Object.keys(a).filter(n=>!ORDER.includes(n)).sort()];
   const ready=names.filter(n=>a[n].saved);
-  $("ctxnote").textContent=(ready.length?`${ready.length} to clear: ${ready.join(", ")} · `:"")+"each tile: its latest reading";
+  $("ctxnote").textContent=ready.length?`${ready.length} to clear: ${ready.join(", ")}`:"";
   $("ctx").innerHTML=names.length?names.map(n=>{const p=Math.max(0,Math.min(100,num(a[n].pct)??0)),c=p>=70?"r":p>=40?"a":"g";
     const old=num(a[n].at)&&Date.now()-a[n].at>72e5;
     return `<div class="ctx-t ${c}${a[n].saved?" saved":""}"${old?' style="opacity:.55"':""} title="${esc(n)}: ${p}% of its memory used${num(a[n].at)?", read "+dur(Date.now()-a[n].at)+" ago":""}${a[n].saved?"; saved, ready to clear":""}"><span class="nm">${esc(n)}<span class="pc">${p}%</span></span><span class="ctx-bar"><i style="width:${p}%"></i></span>${a[n].saved?'<span class="sv">/clear me</span>':""}</div>`}).join(""):'<div class="note">No check yet.</div>';

@@ -139,3 +139,12 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **Two crew-list notes went stale in a day.**
 *Rule:* Manager updates a role's note whenever it goes idle or picks up new work.
+
+**Manager's own memory tile stayed stale after it was cleared.** Only the keeper updated it.
+*Rule:* every role, Manager included, writes its own reading whenever it writes to the board, and right after `/pickup`.
+
+**A command on the board had no Copy button.** It was written inside a plain text step.
+*Rule:* commands go in `{text, cmd}` steps, with any folder change in the same command, one paste.
+
+**A release script that recorded sign-offs was refused as self-approval** (software teams).
+*Rule:* keep a human fallback in the release steps: one copy-box command the owner can run.

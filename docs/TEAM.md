@@ -33,7 +33,7 @@ Each role works on its own branch, named for its lane (`content/`, `shop/`, `sal
 ## How work flows
 
 1. **Manager** sends a task: the goal, what done looks like, and the files involved.
-2. The role does the work, in small steps, and checks it. It logs its own `start` and `end` on the board's `steps` collection as it picks up and hands on each step (`docs/BOARD.md`), with the time read from the real clock. Each time it logs a step, it also reads its own memory use (`get_usage` for itself) and writes it to the board's `ctx/<Role>` document as `{pct, at}`. Use one board id per task: never reuse an id for a second piece of work.
+2. The role does the work, in small steps, and checks it. It logs its own `start` and `end` on the board's `steps` collection as it picks up and hands on each step (`docs/BOARD.md`), with the time read from the real clock. Each time it writes to the board, and right after a `/pickup`, it also reads its own memory use (`get_usage` for itself) and writes it to the board's `ctx/<Role>` document as `{pct, at}`. Use one board id per task: never reuse an id for a second piece of work.
 3. When a step is done, the role sends **READY** to its reviewer, with its review level, and to Publisher if it will go public.
 4. The reviewer reports to the role and to Publisher. Manager hears nothing per outcome.
 5. Publisher publishes on the team's rhythm (below), and sends one line to Manager: **PUBLISHED**.

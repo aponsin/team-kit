@@ -18,3 +18,4 @@
 - Bump the version, check the changelog, run the tests, then ship.
 - After the ship: check the live site in a private window. Report the version, the commit and the result.
 - If anything fails, stop and tell Manager which step. Never fix a conflict yourself.
+- If you record sign-offs with a script, the safety check may refuse it as self-approval. Keep a human fallback in the release steps: one copy-box command the owner can run instead, sent through Manager.
