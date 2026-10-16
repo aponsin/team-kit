@@ -57,8 +57,8 @@ Quiet hours for pushes to the owner: {{quiet hours}}. Urgent fixes (a broken pag
 
 ## Saving usage
 
-- **Fresh start each day.** At the end of each day every role writes a short pick-up note (what is open, the next step). The next morning the owner clears the session and it resumes from the note.
-- **Reset when idle.** The context keeper reports sessions over 40% full. When such a session is idle and its signed-off work is published, Manager asks it to `/handoff`, then tells the owner to type `/clear` in it. With fixed publish windows, do it after the last window of the day.
+- **Fresh start each day.** At the end of each day every role writes a short pick-up note (what is open, the next step). Sessions are cleared (by Manager, or by the owner for Manager itself) and resume from the note.
+- **Reset when idle.** The context keeper reports every session's fullness to Manager. When a session is over 40% full, idle, and its signed-off work is published, Manager asks it to `/handoff`, then resets it itself if Manager started it. The owner types `/clear` only in Manager itself, or in a session the owner started by hand.
 - Keep messages short: one event, one message. No recaps.
 
 ## How to report to Manager

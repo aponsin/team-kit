@@ -25,7 +25,7 @@ You are about to lose this conversation. Write down everything the next you need
 
 5. **Tell the owner, in three lines:**
    - "State saved to `docs/pickup/<role>.md`."
-   - "Now type `/clear`, then `/pickup`."
+   - If Manager started this session: "Manager will reset me." Otherwise: "Now type `/clear`, then `/pickup <Role>`."
    - Anything the owner is waiting on from you, so they know it survives.
 
-Do not clear the session yourself. Only the owner types `/clear`.
+Do not clear the session yourself. Manager resets the sessions it started; the owner clears the others.

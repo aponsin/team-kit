@@ -84,5 +84,8 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 **A single push notification was missed, and a session waited hours for its reset.**
 *Rule:* anything the owner must act on also gets a standing sign on the board. A saved session shows as a dashed red tile, "Saved · /clear me", until it is cleared.
 
-**Manager tried to clear sessions itself, and couldn't.** A session can only clear the sessions it started, and Remote Control blocks it too.
-*Rule:* clearing stays with the owner. Manager asks for `/handoff`, marks the tile, and tells the owner which sessions to clear.
+**The owner had to clear every session by hand, every day.** Manager can clear only the sessions it started, and not while their Remote Control is on. It can't clear sessions the owner started, and a session can't clear itself.
+*Rule:* the owner starts only Manager, and Manager starts every other session. Manager then resets its own sessions (Remote Control off, clear, `/pickup`, Remote Control on). The owner clears only Manager.
+
+**Manager couldn't start sessions from a phone message.** Starting a session works only on the owner's words typed on the host computer, not over Remote Control, a board click or another agent's message.
+*Rule:* the owner types "start <Role>" in the Manager session on the host computer.

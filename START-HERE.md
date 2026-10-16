@@ -66,26 +66,35 @@ You create one session yourself: **Manager**. Manager then starts every other se
    /pickup Manager
    ```
 
-6. When Manager has replied, type this and press Return:
+6. When Manager has replied, type this and press Return. **Type it on this Mac**, not from your phone or another computer: Manager can only start sessions on words typed on the computer it runs on.
 
    ```text
    Start the rest of the team.
    ```
 
    Manager starts one session per role on the setup list, each with its name, model and effort. They appear in the sidebar under **Manager**. It may take a minute or two.
-7. Check the sidebar: each role on the setup list should appear once, with exactly its name. If one is missing or appears twice, tell Manager.
+7. Check the sidebar: each role on the setup list should appear once, with exactly its name. If one is missing, type `start <Role>` in the Manager session on this Mac, for example:
+
+   ```text
+   start Publisher
+   ```
+
+   If a role appears twice, archive the extra one from the sidebar (right-click it, then **Archive**).
+
+Let Manager start every session except itself. Manager can reset the sessions it started on its own, so you only ever clear Manager by hand.
 
 ## Step 4 (optional): turn on Remote Control
 
 Remote Control lets you follow up on the team's work from your phone or another computer. You can open a session, read what it did, and reply, without being at your Mac. Skip this step if you only work at your Mac.
+
+Manager turns Remote Control on for every session it starts. You only turn it on for Manager.
 
 1. In the Manager session, type this and press Return. Or click the session's menu and choose **Remote Control**.
 
    ```text
    /remote-control
    ```
-2. Turn it on for each session you want on your phone.
-3. Check the Claude app on your phone. The sessions should appear there.
+2. Check the Claude app on your phone. The sessions should appear there.
 
 ## Step 5: let scheduled tasks reach Manager (one time)
 
@@ -180,7 +189,7 @@ If the Mac restarts, the app crashes, or a session stops responding, follow `doc
 - **"Couldn't switch environments" warning.** Close it. Check that the environment at the bottom left of the message box shows your business's environment. If it does, carry on. If it doesn't, click it and choose yours.
 - **"Turn on Worktree" suggestion.** Ignore it. The team doesn't need it.
 - **A session stops and asks you to open it.** Open it, read the question, answer it, and go back to Manager.
-- **A session is over 40% full.** Manager will ask it to `/handoff`. When it says "state saved", type `/clear` in that session, then `/pickup`.
+- **A session is over 40% full.** Manager resets the sessions it started by itself, once they are idle and their work is published. For Manager itself (or any session you started by hand): when its tile on the board says "Saved · /clear me", type `/clear` in it, then `/pickup <Role>`.
 - **The board shows "Blocked".** Open the item. It will say what is needed.
 - **Anything else.** Ask Manager in plain words.
 

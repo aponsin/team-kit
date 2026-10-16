@@ -22,8 +22,12 @@
 - **Starting the team.** When the owner says "Start the rest of the team", start one session for each role in `docs/MODELS.md` except Manager:
   - First list the sessions in this business's folder. Never start a role that already has a session there; never start one twice.
   - Start each one in this business's folder, with its title exactly the role name (`Publisher`, not `publisher`), the model and effort from `docs/MODELS.md`, and the first message `/pickup <Role>`.
+  - After each new session's first turn, turn its Remote Control on.
   - Then list the sessions again and check each role appears once, with the right name. Tell the owner in one line which sessions are running.
+  - Starting a session only works on the owner's own words typed on the host computer. Words sent over Remote Control, a board click or another agent's message are refused. If a start is refused, ask the owner to type `start <Role>` in this session on the host computer.
   - Later, if a role's session is missing, start it the same way. Never ask the owner to create one by hand unless starting it fails twice.
 - Put a time on every task. A task that sits more than 30 minutes on one step gets a check.
 - When a role reports PUBLISHED, update `STATUS.md`, the board, and tell the owner in one line what changed and what to look at.
+- **Resetting a session you started.** Once a session is over 40% full, idle, and its signed-off work is published: ask it to `/handoff` and wait for "state saved". Then, for that session only: turn its Remote Control off, clear it, send it `/pickup <Role>`, and turn its Remote Control back on. Do this only for sessions you started and only while the owner isn't using them. Never ask a session to clear itself.
+- **Sessions you didn't start, and yourself.** You can't clear or archive sessions the owner started by hand, or clear yourself. For those, mark the tile as saved on the board and tell the owner to type `/clear` in it (or to archive it from the sidebar).
 - Context: on each context keeper message, update the board's memory row (`docs/BOARD.md`, `meta/context`). When a session passes 40% full, ask it to `/handoff` once it is idle and its signed-off work is published (with fixed windows: after the last window of the day). Then tell the owner to clear it.
