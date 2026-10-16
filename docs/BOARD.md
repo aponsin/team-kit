@@ -23,7 +23,8 @@ Collections in the page's database:
 - `waiting/<id>`: `kind` (`decision`, `action`, `session`, `later`), `text`, `where`, `initiative`, `since`, `done`, `steps[]` (numbered, click-by-click; fill this for every action), `expect` (what the owner should see), `options[]` (for decisions), `images[]` (for anything about how it looks).
 - `events/<id>`: `at`, `version`, `text`. One line per published thing.
 - `meta/live`: `version`, `commit`. Update on each PUBLISHED.
-- `meta/context`: `at` (ms), `agents` (`{Name: {pct, saved}}`). Feeds the "Agents' memory" row at the top: one tile per agent, green under 40%, amber from 40% to 69%, red from 70%. A tile turns dashed red with "Saved · /clear me" when `saved` is true.
+- `ctx/<Role>`: `pct`, `at` (ms). Each role writes its own reading here whenever it logs a step.
+- `meta/context`: `at` (ms), `agents` (`{Name: {pct, saved}}`). Written by Manager from the context keeper's report (every 2 hours). Each tile shows the freshest reading, from the role itself or from the keeper, and dims when it is older than 2 hours. Feeds the "Agents' memory" row at the top: one tile per agent, green under 40%, amber from 40% to 69%, red from 70%. A tile turns dashed red with "Saved · /clear me" when `saved` is true.
 - `usage/<YYYY-MM-DD>`: one row per day at most.
 - `steps/<id>`: one document per event, written by the role doing the work: `init` (the initiative's id), `phase` (`plan`, `make`, `edit`, `review`, `sign`, `publish`, `live`), `who` (the role), `kind` (`start` or `end`), `at` (ms, from the real clock), and optionally `wait` (`busy` or `gate`) and `version`. Log a `start` when you pick up a step and an `end` when you hand it on. Waiting gets its own start and end with `wait` set. A `live` event marks the initiative done.
 - Initiatives also carry `level` (`None`, `Quick` or `Full`) and `customerText` (true or false). The page skips the second sign-off unless the level is Full, and skips Edit when `customerText` is false.
@@ -39,6 +40,7 @@ What the page does on its own:
 
 ## Rules
 
+- **One board id per task.** Never reuse an initiative's id for a second piece of work: a step logged against the old id lands on the wrong item.
 - **Every ask goes on the board**, even a small one, as an initiative, the moment it is handed out.
 - **Decisions go on the board, never only in chat.** A question marked 🔴 in chat must also be a waiting item.
 - **One ask at a time.** Ask the owner one thing on the board at once; queue the rest.
@@ -46,7 +48,7 @@ What the page does on its own:
 - **Actions carry steps.** Every item for the owner has steps. Any text the owner must type or paste (a command, a message) goes in a step's copy box (`{text, cmd}`), never inline in the text.
 - **Never put an action on the owner's list before its precondition is met.** Add "after X is live" items only once X is live.
 - **Queue versus gate.** `wait: "busy"` means the item waits behind a busy role. `wait: "gate"` means it waits on a decision or condition. Keep each initiative's log sequential; close an entry when the state changes.
-- **Agents' memory.** On each context keeper message, write `meta/context` with every agent's percentage, in the same batch as any other board update. Set `saved: true` when an agent replies that its state is saved after `/handoff`. Drop `saved` when the agent sends "picked up <Role>", or once its percentage falls under 30. Manager resets the sessions it started itself. The "Saved · /clear me" tile is for Manager itself and any session the owner started by hand: those only the owner can clear.
+- **Agents' memory.** The keeper's report is used to decide who gets reset; the roles' own `ctx` readings keep the tiles fresh between reports. On each context keeper message, write `meta/context` with every agent's percentage, in the same batch as any other board update. Set `saved: true` when an agent replies that its state is saved after `/handoff`. Drop `saved` when the agent sends "picked up <Role>", or once its percentage falls under 30. Manager resets the sessions it started itself. The "Saved · /clear me" tile is for Manager itself and any session the owner started by hand: those only the owner can clear.
 - **Close log entries at every hand-over.** When work moves from one role to another, close the current `phaseLog` entry (set `end`) before opening the next one. An open entry keeps counting time.
 - **Close stale entries.** When an initiative is done, mark it `done` and set `doneAt`. Anything with no movement for a week is marked `paused` with a note.
 - **Replies.** When the owner presses a button or writes a note, the page sends a comment to Manager. At the start of every Manager turn, check the waiting items for a `response` that is not yet done. Act on it, mark the item done, and resolve its comment thread.

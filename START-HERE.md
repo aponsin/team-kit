@@ -117,7 +117,7 @@ This is the only permission the kit needs. If your team later adds a command tha
 
 ## Step 6: schedule the two checks
 
-The two checks run on their own: the watchdog every 30 minutes, and the context keeper every 4 hours. Ask the **Manager** session to set them up. Manager works inside your business's folder, so it can find the files.
+The two checks run on their own: the watchdog every 30 minutes, and the context keeper every 2 hours. Ask the **Manager** session to set them up. Manager works inside your business's folder, so it can find the files.
 
 1. Open the **Manager** session.
 2. Type this message, and press Return:
@@ -129,7 +129,7 @@ The two checks run on their own: the watchdog every 30 minutes, and the context 
 3. Do the same again with this message:
 
    ```text
-   Create a scheduled task whose name is this business's name, a colon, and "context keeper", that runs every 4 hours, using the prompt in tasks/context-keeper.md in this folder.
+   Create a scheduled task whose name is this business's name, a colon, and "context keeper", that runs every 2 hours, using the prompt in tasks/context-keeper.md in this folder.
    ```
 
 4. If Claude says a schedule that often isn't allowed, reply "yes, hourly is fine". The watchdog still works at an hourly check, just less often.

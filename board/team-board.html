@@ -272,7 +272,7 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox")closeShot()});
 const PHASES=[["plan","Plan"],["make","Make"],["edit","Edit"],["review","Review"],["sign","Sign-off"],["publish","Publish"],["live","Live"]];
 const KIND={decision:"Decision",action:"Your click",session:"Session",later:"Later"};
-const state={initiatives:[],waiting:[],events:[],usage:[],meta:[],todo:[],ideas:[],initRaw:[],steps:[]};
+const state={initiatives:[],waiting:[],events:[],usage:[],meta:[],todo:[],ideas:[],initRaw:[],steps:[],ctx:[]};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=v=>typeof v==="number"&&isFinite(v)?v:null;
@@ -530,13 +530,18 @@ document.addEventListener("submit",async e=>{const c=e.target.dataset&&e.target.
   try{await dbRef.doc(c+"/t"+Date.now()).set(doc);inp.value=""}catch(_){}});
 // Agents' memory: how full each session's context is (green under 40%, amber to 69%, red from 70%), from Manager's checks.
 // A dashed red tile means the agent saved its notes and waits for the owner to type /clear in it.
-function renderCtx(){const m=state.meta.find(d=>d.id==="context")||{},a=m.agents||{};
+// Each agent also writes its own reading to "ctx/<Role>" {pct, at} when it logs a step; the freshest reading wins.
+// The keeper's check (meta "context") still carries the saved / "clear me" flags. A reading older than 2 h is dimmed.
+function renderCtx(){const m=state.meta.find(d=>d.id==="context")||{},a={};
+  Object.entries(m.agents||{}).forEach(([n,v])=>{a[n]={...v,at:num(v.at)??num(m.at)}});
+  state.ctx.forEach(d=>{if(!d.id||num(d.pct)==null)return;const cur=a[d.id]||{};if(!num(cur.at)||num(d.at)>cur.at)a[d.id]={...cur,pct:d.pct,at:num(d.at)}});
   const ORDER=["Manager","Writer","Editor","Shop","Support","Sales","Outreach","Admin","Research","Reviewer","Publisher","Triage","Builder","Checker","Security","Release"];
   const names=[...ORDER.filter(n=>a[n]),...Object.keys(a).filter(n=>!ORDER.includes(n)).sort()];
   const ready=names.filter(n=>a[n].saved);
-  $("ctxnote").textContent=(ready.length?`${ready.length} to clear: ${ready.join(", ")} · `:"")+(num(m.at)?"checked "+dayLabel(m.at):"");
+  $("ctxnote").textContent=(ready.length?`${ready.length} to clear: ${ready.join(", ")} · `:"")+"each tile: its latest reading";
   $("ctx").innerHTML=names.length?names.map(n=>{const p=Math.max(0,Math.min(100,num(a[n].pct)??0)),c=p>=70?"r":p>=40?"a":"g";
-    return `<div class="ctx-t ${c}${a[n].saved?" saved":""}" title="${esc(n)}: ${p}% of its memory used${a[n].saved?"; saved, type /clear in it":""}"><span class="nm">${esc(n)}<span class="pc">${p}%</span></span><span class="ctx-bar"><i style="width:${p}%"></i></span>${a[n].saved?'<span class="sv">/clear me</span>':""}</div>`}).join(""):'<div class="note">No check yet.</div>';
+    const old=num(a[n].at)&&Date.now()-a[n].at>72e5;
+    return `<div class="ctx-t ${c}${a[n].saved?" saved":""}"${old?' style="opacity:.55"':""} title="${esc(n)}: ${p}% of its memory used${num(a[n].at)?", read "+dur(Date.now()-a[n].at)+" ago":""}${a[n].saved?"; saved, ready to clear":""}"><span class="nm">${esc(n)}<span class="pc">${p}%</span></span><span class="ctx-bar"><i style="width:${p}%"></i></span>${a[n].saved?'<span class="sv">/clear me</span>':""}</div>`}).join(""):'<div class="note">No check yet.</div>';
 }
 // Steps: each agent logs its own step as it happens, one document per event in "steps":
 // {init: <initiative id>, phase: plan|make|edit|review|sign|publish|live, who, kind: "start"|"end", at: <ms>, wait?: "busy"|"gate", version?}.
@@ -573,6 +578,6 @@ setInterval(tick,15000);tick();renderAll();
   window.claude.use("comments").then(c=>{commentsRef=c}).catch(()=>{});
   const sub=(name)=>db.collection(name).onSnapshot(snap=>{state[name==="initiatives"?"initRaw":name]=snap.docs.map(d=>({id:d.id,...(d.data()||{})}));renderAll();$("synced").textContent="live, updated "+hhmm(Date.now())},
     ()=>{$("dot").classList.remove("on");$("synced").textContent="connection lost, reload"});
-  ["initiatives","waiting","events","usage","meta","todo","ideas","steps"].forEach(sub);
+  ["initiatives","waiting","events","usage","meta","todo","ideas","steps","ctx"].forEach(sub);
 })();
 </script>

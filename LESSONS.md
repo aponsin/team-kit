@@ -120,3 +120,16 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **The red-ask check fired on a mere mention of the red mark.** It blocked a session that wasn't asking anything.
 *Rule:* the check reacts only when the mark starts a line, the way a real ask is written.
+
+## Outreach
+
+**Warm contacts who were interested still didn't say yes.** One read the message as a scam. Another feared the offer would hurt something he already had. A message stacked with guarantees read as too good to be true.
+*Rule:* open with the real person (name, town, phone), give one believable reason it's easy, keep one guarantee line, state the plain price, send no attachments to a stranger, and ask for a one-word YES. The Sales and Outreach briefs carry the full list.
+
+## The flight board, continued
+
+**The memory tiles looked frozen.** They were fed only by a keeper that ran every few hours.
+*Rule:* each role writes its own memory reading whenever it logs a step. The keeper (every 2 hours) is used only to decide who gets reset.
+
+**A step landed on the wrong board item.** One id had been reused for two pieces of work.
+*Rule:* one board id per task, never reused.
