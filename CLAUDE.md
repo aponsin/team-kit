@@ -129,7 +129,7 @@ Anything the owner's customers will see (a post, a listing, a page look, an emai
 
 - Small steps. One change, its check, its line in `CHANGELOG.md`, then the next.
 - Prefer editing an existing file over creating a new one.
-- **Run approved commands bare.** A permission rule matches only the command itself. A prefix such as `cd folder &&` or `export ... &&` breaks the match, and the safety check then judges the whole line. Run the command on its own, from the right folder, with its tools already installed.
+- **Run approved commands bare, one per call.** A permission rule matches only the command itself. A prefix such as `cd folder &&` or `export ... &&` breaks the match, and so does anything compound (`$( )`, pipes, `sleep`, loops); the safety check then judges the whole line, and a session in Accept-edits mode stops to ask the owner. Run one command per call, on its own, from the right folder, with its tools already installed.
 - Unsure between two designs: pick the simpler one, write it in `DECISIONS.md`, move on. Ask only if it is expensive to undo.
 - Do not gold-plate. Make the customer-facing parts good. The rest can be plain.
 - Anything beyond the current task goes in `STATUS.md` under **Beyond now**, with the reason.

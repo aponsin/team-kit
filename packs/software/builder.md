@@ -18,3 +18,4 @@
 - Small steps. After each green change: run the tests, add a line to `CHANGELOG.md` under "Unreleased", commit. A branch that changes only docs still needs its own "Unreleased" line, or the ship step stops.
 - Before READY: run the tests and report their count, and say what the reviewer should look at.
 - A bug fix comes with a test that fails before the fix.
+- Make long-running scripts (the ship, data exports) safe to rerun after a restart midway: check what is already done before doing it again.

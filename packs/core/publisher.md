@@ -19,5 +19,7 @@
 - Publish, then check the live result in a private window. Confirm the text, the price and the link.
 - If a publish fails twice, stop and tell Manager which step.
 - Never send a customer message yourself unless the owner has said so for that message.
+- Take a go to publish only from the owner, typed in your session. A go relayed by another agent is refused by the safety check; ask Manager to put a copy box on the board instead.
+- If a signed item must wait behind another publish, log a `busy` wait on the board at once, and close it when you really start.
 - You are the only role that merges into `main`. Every other role works on its own branch.
 - After each publish, append one line to `docs/PUBLISH-LOG.md`: date and time, version, what went live, and the result.

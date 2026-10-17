@@ -113,7 +113,7 @@ If instead you see **"command not found"**, or a box asks you to install **devel
 
 It works whether or not the settings file exists yet, so you don't need to create it first. If the file already exists, the command saves a backup next to it, called `settings.json.bak`. It's safe to run it again: it won't add the permission twice.
 
-This is the only permission the kit needs. If your team later adds a publish or ship command (software teams), it needs its own permission too. You add it yourself, because agents aren't allowed to change your settings: Manager gives you the exact line in one copy box, and it is listed here. A session started before the permission existed may stay blocked; start a fresh session for that role.
+This is the only permission every team needs. Software teams usually also allow a few read-only status commands (for example checking a test run), so agents don't stop to ask about them; Manager gives you those in one copy box when the time comes. If your team later adds a publish or ship command (software teams), it needs its own permission too. You add it yourself, because agents aren't allowed to change your settings: Manager gives you the exact line in one copy box, and it is listed here. A session started before the permission existed may stay blocked; start a fresh session for that role.
 
 ## Step 6: schedule the two checks
 

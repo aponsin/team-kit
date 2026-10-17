@@ -191,3 +191,20 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **A helper script was lost.** It lived in a temporary folder.
 *Rule:* helper scripts live in the repository's `scripts/` folder. Daily usage rows are written when the context keeper's message arrives, not from memory.
+
+## Batch 6
+
+**Ideas sat in the backlog with nobody acting on them.**
+*Rule:* each idea has a Let's start button. Manager handles it by kind (discuss, build or assess) and closes the idea once it becomes an initiative.
+
+**Agents kept stopping to ask permission for routine commands.** Compound commands never match a permission rule, and a session in Accept-edits mode asks for anything not allowed.
+*Rule:* one bare command per call. Read-only status commands go on the allow list.
+
+**A go to publish was refused when an agent passed it on.** The safety check treats it as a production deploy.
+*Rule:* the owner's go goes straight to Publisher (or Release). Manager puts the exact text in a copy box on the board item.
+
+**A signed item showed a stale phase while it waited behind another publish.**
+*Rule:* Publisher logs the queue wait at the go, and closes it when the publish really starts.
+
+**A ship script couldn't finish after the agent running it restarted midway** (software teams). The rerun would have bumped the version twice.
+*Rule:* long scripts resume safely: they check what is already done before redoing it.

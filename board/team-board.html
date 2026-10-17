@@ -186,6 +186,7 @@ svg text{fill:var(--muted);font:10px var(--mono)}
 .td-btns button,.todo-add button{font:600 .8rem var(--body);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:4px 9px;cursor:pointer;min-width:2.2rem}
 .td-btns button:disabled{opacity:.35;cursor:default}
 .td-btns button.td-done{color:var(--ok);border-color:var(--ok)}
+.td-btns button.td-start{color:var(--panel);background:var(--accent);border-color:var(--accent)}
 .td-btns button:focus-visible,.todo-add button:focus-visible,.todo-add input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .todo-add{display:flex;gap:8px;padding:10px 16px 14px;border-top:1px solid var(--line)}
 .todo-add input{flex:1;min-width:0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
@@ -519,11 +520,17 @@ function listOpen(c){return (state[c]||[]).filter(t=>!t.done&&t.text).sort((a,b)
 function renderList(c){const L=LISTS[c],list=listOpen(c);
   $(c+"count").textContent=list.length?`${list.length} item${list.length>1?"s":""}`:"";
   $(c+"list").innerHTML=list.length?list.map((t,n)=>`<div class="td-row"><span class="td-n">${n+1}</span><div class="w-text">${t.kind&&IKIND[t.kind]?`<span class="ik ${esc(t.kind)}">${IKIND[t.kind]}</span> `:""}${esc(t.text)}${t.area||t.note?`<div class="w-sub">${esc([t.area,t.note].filter(Boolean).join(" · "))}</div>`:""}</div>
-    <span class="td-btns"><button type="button" data-td="up" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Move up"${n?"":" disabled"}>▲</button><button type="button" data-td="down" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Move down"${n<list.length-1?"":" disabled"}>▼</button><button type="button" class="td-done" data-td="done" data-coll="${c}" data-id="${esc(t.id)}" aria-label="${L.close}">${L.close}</button></span></div>`).join(""):`<div class="empty">${L.empty}</div>`;
+    <span class="td-btns"><button type="button" data-td="up" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Move up"${n?"":" disabled"}>▲</button><button type="button" data-td="down" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Move down"${n<list.length-1?"":" disabled"}>▼</button>${c==="ideas"?(t.startAt?`<span class="w-sub" style="align-self:center">Sent to Manager</span>`:`<button type="button" class="td-start" data-td="start" data-coll="${c}" data-id="${esc(t.id)}" aria-label="Let's start this">Let's start</button>`):""}<button type="button" class="td-done" data-td="done" data-coll="${c}" data-id="${esc(t.id)}" aria-label="${L.close}">${L.close}</button></span></div>`).join(""):`<div class="empty">${L.empty}</div>`;
 }
 function renderTodo(){renderList("todo");renderList("ideas")}
 document.addEventListener("click",async e=>{const b=e.target.closest&&e.target.closest("[data-td]");if(!b||!dbRef)return;const c=b.dataset.coll;if(!LISTS[c])return;
   const list=listOpen(c),i=list.findIndex(t=>t.id===b.dataset.id);if(i<0)return;b.disabled=true;
+  // "Let's start": asks Manager to start on an idea (a talk, a build or an assessment); Manager turns it into an initiative.
+  if(b.dataset.td==="start"){const t=list[i],anchor=await prepAnchor(b);
+    try{await dbRef.doc(c+"/"+t.id).update({startAt:Date.now()});let ok=false;
+      try{if(anchor&&commentsRef&&await commentsRef.canSendToClaude()==="available"){await commentsRef.sendToClaude({anchor,text:`Board idea [${t.id}]: let's start this (${t.kind||"idea"}): "${t.text}".`.slice(0,1900)});ok=true}}catch(_){}
+      if(!ok)await dbRef.doc(c+"/"+t.id).update({startPing:"not sent"})}catch(_){b.disabled=false}
+    return}
   try{if(b.dataset.td==="done")await dbRef.doc(c+"/"+list[i].id).update({done:true,doneAt:Date.now()});
     else{const j=b.dataset.td==="up"?i-1:i+1;if(j<0||j>=list.length)return;
       // Renumber the whole list in its new order so ranks stay distinct.
