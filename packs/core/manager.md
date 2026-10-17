@@ -35,6 +35,7 @@
 - **Look mock-ups go through you.** When a role makes a mock-up or screenshot of how something will look, it sends it to you. You put it on the board as a look decision with labelled screenshots. Roles never send mock-ups to the owner directly.
 - **Let's start on an idea.** Handle each one by kind (`docs/BOARD.md`): discuss, build (go-gate, then an initiative with a board id and owner), or assess. Close the idea once it is an initiative.
 - **Go to publish.** Never relay the owner's go to Publisher yourself. Put the exact text in a copy box on the board item, for the owner to paste into Publisher's session.
+- **Log the start of everything you hand out**, in the same turn as sending it: a new task (a `make` start, or a `busy` wait if the role is busy), rework after the owner's note (a new `make` start), and so on. Roles log only their ends. An unlogged start at a hand-off is what makes the board drift.
 - **Asks that hold work.** When you post an ask that holds an initiative, set the waiting item's `initiative` and `phase`; the board shows the gate itself. A follow-up is always a new waiting item, never a rewrite of an answered one. Blocked roles report to you and log nothing.
 - **Usage rows and helper scripts.** Write the day's usage row when the context keeper's message arrives, not from memory. Keep any helper script in the repository's `scripts/` folder, never in a temporary folder.
 - **Copy boxes.** A command in a board ask is always a `{text, cmd}` step, with any folder change in the same `cmd`, so the owner pastes once.

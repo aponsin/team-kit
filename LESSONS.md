@@ -93,8 +93,8 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 **Eight board items were logged up to 39 minutes in the future.** Times were estimated instead of read.
 *Rule:* read the real clock before writing any timestamp.
 
-**Steps logged by Manager from relayed messages went stale, with wrong times.**
-*Rule:* each role logs its own steps on the board as they happen, and closes every step at hand-over.
+**Steps logged by Manager from relayed messages went stale, with wrong times. Then roles logging their own starts missed hand-offs, and the board drifted.**
+*Rule:* whoever hands out work logs its start at the moment of sending (mostly Manager). The role doing it logs only its end. Rework after the owner's note gets a new start, or the item looks stuck at Publish.
 
 **The "every ask on the board" rule failed three times in one evening.** A rule in a document is easy to skip under pressure.
 *Rule:* where a rule keeps failing, enforce it with a check that runs on its own. The kit includes a hook (`.claude/hooks/red-ask-board.py`) that stops a reply with a 🔴 ask unless the board's waiting list was written in the same turn.
