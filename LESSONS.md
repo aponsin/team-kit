@@ -171,3 +171,23 @@ Each entry is a trap a working team of Claude sessions fell into, in plain words
 
 **The crew list took most of the phone screen.** One row per role.
 *Rule:* the crew list shows compact tiles, several per row.
+
+## The flight board, batch 5
+
+**A review looked stuck on the board.** The board took "the phase after the last event" as current, but reviews run side by side.
+*Rule:* the current phase is one with an open step, else the first needed phase nobody has finished.
+
+**A reviewer guessed the board id from the branch name, and logged against the wrong item.**
+*Rule:* every READY carries its board id. A reviewer without one asks Manager.
+
+**A follow-up question disappeared.** It was written into an answered item, and the page hides answered items.
+*Rule:* a follow-up ask is always a new waiting item.
+
+**A soft question ("Want that?") was missed.** The check only catches marked asks.
+*Rule:* any sentence that needs the owner's answer is a marked ask with a board item.
+
+**The ship step stopped on a docs-only branch** (software teams). It had no "Unreleased" changelog line.
+*Rule:* every branch adds its own "Unreleased" line, docs included.
+
+**A helper script was lost.** It lived in a temporary folder.
+*Rule:* helper scripts live in the repository's `scripts/` folder. Daily usage rows are written when the context keeper's message arrives, not from memory.

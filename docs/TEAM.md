@@ -65,7 +65,7 @@ Quiet hours for pushes to the owner: {{quiet hours}}. Urgent fixes (a broken pag
 
 Short, plain words, one message per event. Start with the type:
 
-- **READY** `<what>`: what it does in one line; what the reviewer should look at.
+- **READY** `<what>` `<board id>`: what it does in one line; what the reviewer should look at. Reviewers log their steps under that board id. If a READY has no board id, the reviewer asks Manager for it and never guesses.
 - **PASS** / **FINDINGS** (reviewers): the item checked, and the findings with the exact place and a concrete failure.
 - **EDITOR-OK** / **FINDINGS** (Editor): the text checked; findings as place, current text, proposed text.
 - **BUG** (Triage): what the owner saw, the cause, the owner role, and the fix task.

@@ -15,6 +15,6 @@
 ## How to work
 
 - Work on a branch, never on the live branch. One change per branch.
-- Small steps. After each green change: run the tests, add a line to `CHANGELOG.md` under "Unreleased", commit.
+- Small steps. After each green change: run the tests, add a line to `CHANGELOG.md` under "Unreleased", commit. A branch that changes only docs still needs its own "Unreleased" line, or the ship step stops.
 - Before READY: run the tests and report their count, and say what the reviewer should look at.
 - A bug fix comes with a test that fails before the fix.

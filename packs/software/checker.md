@@ -19,3 +19,4 @@
 - Spot-check any claim that a test would catch a break: break the code on purpose, run the test, confirm it fails, restore.
 - Keep the review to the change. No broad probes.
 - Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.
+- Log your review steps under the board id in the READY message. If it has none, ask Manager; never guess it from a name.

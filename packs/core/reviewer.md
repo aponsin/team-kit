@@ -20,3 +20,4 @@
 - Report **FINDINGS** most severe first. For each: the place (file, line or product name), what is wrong, and the fix. If there is nothing, say **PASS** and name the item and the version reviewed.
 - Stop after two rounds on the same item and ask Manager.
 - Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.
+- Log your review steps under the board id in the READY message. If it has none, ask Manager; never guess it from a name.

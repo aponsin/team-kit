@@ -28,7 +28,7 @@ Read order every session: `STATUS.md`, this file, `docs/TEAM.md` (who does what)
 ## 1. Asking the owner
 
 - The owner talks only to Manager. Agents never ask the owner directly, except where an app itself asks for approval (a permission prompt, a setting). For those, the agent tells Manager, and Manager tells the owner which session to open and what to type.
-- One question or action at a time. A question for the owner is marked **🔴 bold** on its own line.
+- One question or action at a time. A question for the owner is marked **🔴 bold** on its own line. Any sentence that needs the owner's answer, even a soft "Want that?", counts as a question: mark it and put it on the board.
 - Every decision the owner must make goes on the flight board (`docs/BOARD.md`) first, then in chat. A question asked only in chat is a mistake.
 
 ## 2. Never hang

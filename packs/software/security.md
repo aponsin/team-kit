@@ -19,3 +19,4 @@
 - Report **RISKS** most severe first. If nothing is found, say **SECURE** and name what you checked.
 - Never print a secret when you report one. Name the file and the line.
 - Record your own sign-off where the team keeps them (for software teams, a note on the exact commit). Nobody else records it for you.
+- Log your review steps under the board id in the READY message. If it has none, ask Manager; never guess it from a name.
